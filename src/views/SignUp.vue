@@ -10,7 +10,7 @@
 				<input type="password" placeholder="Password" v-model="password">
 			</div>
 			<button class="btn" @click="signup">Registrate</button>
-			<p>¿Ya tenés una cuenta? <router-link class="router" to="/signup">Ingresá acá!</router-link></p>
+			<p>¿Ya tenés una cuenta? <router-link class="router" to="/login">Ingresá acá!</router-link></p>
 		</div>
 	</div>
 </template>
