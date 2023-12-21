@@ -128,4 +128,36 @@ p{
 	text-decoration: none;
 	font-weight: 600;
 }
+@media (max-width: 839px) {
+  .fondo {
+    padding: 0 10px;
+  }
+
+  .wrapper {
+    width: 100%;
+    max-width: none;
+  }
+
+  .wrapper h1 {
+    font-size: 24px;
+  }
+
+  .input-box {
+    margin: 15px 0;
+  }
+
+  .input-box input {
+    font-size: 12px;
+    padding: 10px 20px 10px 10px;
+  }
+
+  .wrapper .btn {
+    height: 30px;
+    font-size: 12px;
+  }
+
+  p {
+    margin: 10px 0;
+  }
+}
 </style>

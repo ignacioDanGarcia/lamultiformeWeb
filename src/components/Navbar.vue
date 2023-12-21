@@ -3,7 +3,11 @@
             <a href="./index.html" class="logo">
                 <img src="../assets/multiforme_logo.png" alt="logo">
             </a>
-            <ul>
+            <label for="check" class="checkbtn">
+                <i class="fa-solid fa-bars"></i>
+            </label>
+            <input type="checkbox" id="check">
+            <ul class="menu">
                 <li><router-link to="/">La multi</router-link></li>
                 <li><router-link to="/">Profes</router-link></li>
                 <li><router-link to="/">Talleres</router-link></li>
@@ -14,6 +18,8 @@
                     <button @click="logout">Cerrar sesión</button>
                 </li>
             </ul>
+            
+            
         </nav>
 </template>
 
@@ -36,6 +42,7 @@ nav{
     position:absolute;
     top:0;
     left: 0;
+    margin: 0;
     width: 100%;
     padding: 30px 100px;
     display: flex;
@@ -81,5 +88,41 @@ nav ul li a::after{
 }
 nav ul li a:hover::after{
     width: 100%;
+}
+.checkbtn{
+    font-size: 30px;
+    color: white;
+    float: right;
+    line-height: 80px;
+    margin-right: 10px;
+    cursor: pointer;
+    display: none;
+}
+#check{
+    display: none;
+}
+@media (max-width: 858px){
+    .checkbtn{
+        display: block;
+    }
+    nav ul{
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        background: #363c6d;
+        top: 80px;
+        left: -100%;
+        text-align: center;
+        flex-direction: column;
+        transition: all .5s;
+    }
+    nav ul li{
+        display: block;
+        margin-bottom: 10px;
+        line-height: 30px;
+    }
+    #check:checked + ul {
+        left: 0;
+    }
 }
 </style>
