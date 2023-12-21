@@ -4,19 +4,31 @@
                 <img src="../assets/multiforme_logo.png" alt="logo">
             </a>
             <ul>
-                <li><a href="#">La multi</a></li>
-                <li><a href="#">Profes</a></li>
-                <li><a href="#">Talleres</a></li>
-                <li><a href="#">Libros</a></li>
-                <li><a href="#">Iniciar sesión</a></li>
+                <li><router-link to="/">La multi</router-link></li>
+                <li><router-link to="/">Profes</router-link></li>
+                <li><router-link to="/">Talleres</router-link></li>
+                <li><router-link to="/">Libros</router-link></li>
+                <li v-if="!isLoggedIn"><router-link to="/login">Iniciar sesión</router-link></li>
+                <li v-if="isLoggedIn">
+                    <router-link to="/calendario">Calendario</router-link>
+                    <button @click="logout">Cerrar sesión</button>
+                </li>
             </ul>
         </nav>
 </template>
 
 <script>
 export default {
-  name: 'Navbar'
-}
+  name: 'Navbar',
+  props: ['isLoggedIn'],
+  methods: {
+    logout() {
+
+      this.$emit('logout');
+      this.$router.push('/');
+    },
+  },
+};
 </script>
 
 <style scoped>
