@@ -25,7 +25,7 @@ export default {
 </script>
 
 <template>
-  <div class="politicas">
+  <div>
     <Navbar :isLoggedIn="isLoggedIn" @logout="handleLogout" />
     <router-view :isLoggedIn="isLoggedIn" @logged-in="handleLoggedIn" />
     <br><br><br>
@@ -77,21 +77,14 @@ export default {
 
 <style scoped>
 
-.footer{
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
 .aviso{
-    min-height: 400px;
-    margin: 20px auto;
+    margin: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100vh;
     margin-top: 250px;
     margin-bottom: 250px;
-    padding-bottom: 20px;
-    justify-content: space-between;
 }
 .aviso-texto{
     width: 800px;
