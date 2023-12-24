@@ -1,6 +1,6 @@
 <template>
         <nav>
-            <a href="./index.html" class="logo">
+            <a href="/" class="logo">
                 <img src="../assets/multiforme_logo.png" alt="logo">
             </a>
             <label for="check" class="checkbtn">
