@@ -6,7 +6,7 @@
                         <h4>Redes sociales y contacto</h4>
                         <ul>
                             <li><a href="https://www.instagram.com/lamultiforme/"><i class="fab fa-instagram"> lamultiforme</i></a></li>
-                            <li><a href="#"><i class="fa-brands fa-whatsapp"></i> +54 9 11 2682-5124</a></li>
+                            <li><a href="https://wa.me/5491126825124"><i class="fa-brands fa-whatsapp"></i> +54 9 11 2682-5124</a></li>
                         </ul>
                     </div>
                     <div class="footer-col">
@@ -17,10 +17,11 @@
                     </div>
                     <div class="footer-col">
                         <h4>Nuestro espacio</h4>
-                        <ul>
-                            <li><a href="#">Aviso legal</a></li>
-                            <li><a href="#">Politica de privacidad</a></li>
-                            <li><a href="#">Términos y condiciones</a></li>
+                        <ul><!--usar routerlink-->
+                            <li><router-link to="/aviso-legal">Aviso legal</router-link></li>
+                            <li><router-link to="/cancelar-suscripcion">Cancelar suscripción</router-link></li>
+                            <li><router-link to="/politicas-de-privacidad">Politica de privacidad</router-link></li>
+                            <li><router-link to="/terminos-y-condiciones">Términos y condiciones</router-link></li>
                         </ul>
                     </div>
                     <div class="footer-col">
@@ -115,7 +116,7 @@ ul{
 .footer-col .social-links a i {
     top: 50%;
     left: 50%;
-    transform: translate(0%, 70%);
+    transform: translate(0%, 0%);
 }
 .footer-col .social-links a:hover{
 	color: #ffa44e;
