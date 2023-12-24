@@ -1,85 +1,90 @@
 <template>
-    <div class="row">
-    <div class="column">
-        <div class="card">
+    <div>
+        <div class="agenda">
+            <h1 class="agenda-text">Agenda</h1>
+        </div>
+        
+        <div class="row">
+            <div class="column">
+                <div class="card">
+                    
+                    <h2>Lunes</h2>
+                        <p>8.00hs PILATES - Profe SUSY</p>
+                        <p>9.00hs PILATES - Profe SUSY</p>
+                        <p>10.00hs PILATES - Profe SUSY</p>
+                        <p>11.00hs PILATES - Profe SUSY</p>
+                        <p>15.00hs PILATES - Profe BERU</p>
+                        <p>16.00hs PILATES - Profe BERU</p>
+                        <p>17.00hs PILATES - Profe BERU</p>
+                        <p>18.30hs HATHA YOGA DINAMICO - Profe BERU</p>
+                </div>
+            </div>
+
+            <div class="column">
+                <div class="card">
+                    
+                    <h2>Martes</h2>
+                    <p>15.00hs PILATES - Profe BERU</p>
+                    <p>16.00hs YOGA - Profe BERU</p>
+                    <p>17.00hs YOGA - Profe BERU</p>
+                    <p>19.30hs PILATES - Profe BERU</p>
+                </div>
+            </div>
+
+            <div class="column">
+                <div class="card">
+                    
+                    <h2>Miércoles</h2>
+                    <p>08.00hs PILATES - Profe BERU</p>
+                    <p>09.00hs PILATES - Profe BERU</p>
+                    <p>10.00hs PILATES - Profe BERU</p>
+                    <p>11.00hs PILATES - Profe BERU</p>
+                    <p>15.00hs PILATES - Profe BERU</p>
+                    <p>16.00hs PILATES - Profe BERU</p>
+                    <p>17.00hs PILATES - Profe BERU</p>
+                    <p>18.00hs YOGA DINÁMICO - Profe DANI</p>
+                    <p>19.30hs YOGA DINÁMICO - Profe DANI</p>
+                </div>
+            </div>
+
+            <div class="column">
+                <div class="card">
+                    
+                    <h2>Jueves</h2>
+                    <p>08.00hs PILATES - Profe BERU</p>
+                    <p>09.00hs PILATES - Profe BERU</p>
+                    <p>10.00hs YOGA - Profe BERU</p>
+                    <p>11.00hs YOGA - Profe BERU</p>
+                    <p>15.00hs YOGA - Profe BERU</p>
+                    <p>16.00hs YOGA - Profe BERU</p>
+                    <p>17.00hs YOGA - Profe BERU</p>
+                    <p>18.00hs PILATES - Profe BERU</p>
+                    <p>19.00hs YOGA DINÁMICO - Profe BERU</p>
+                </div>
+            </div>
+
+            <div class="column">
+                <div class="card">
+                    
+                    <h2>Viernes</h2>
+                    <p>08.00hs PILATES - Profe SUSY</p>
+                    <p>09.00hs PILATES - Profe SUSY</p>
+                    <p>10.00hs HATHA YOGA - Profe THEO</p>
+                    <p>11.00hs PILATES - Profe SUSY</p>
+                </div>
+            </div>
+
+            <div class="column">
+                <div class="card">
+                    
+                    <h2>Sábado</h2>
+                    <p>Próximamente!</p>
+                </div>
+            </div>
+
             
-            <h2>Lunes</h2>
-                <p>8.00hs PILATES - Profe SUSY</p>
-                <p>9.00hs PILATES - Profe SUSY</p>
-                <p>10.00hs PILATES - Profe SUSY</p>
-                <p>11.00hs PILATES - Profe SUSY</p>
-                <p>15.00hs PILATES - Profe BERU</p>
-                <p>16.00hs PILATES - Profe BERU</p>
-                <p>17.00hs PILATES - Profe BERU</p>
-                <p>18.30hs HATHA YOGA DINAMICO - Profe BERU</p>
         </div>
     </div>
-
-    <div class="column">
-        <div class="card">
-            
-            <h2>Martes</h2>
-            <p>15.00hs PILATES - Profe BERU</p>
-            <p>16.00hs YOGA - Profe BERU</p>
-            <p>17.00hs YOGA - Profe BERU</p>
-            <p>19.30hs PILATES - Profe BERU</p>
-        </div>
-    </div>
-
-    <div class="column">
-        <div class="card">
-            
-            <h2>Miércoles</h2>
-            <p>08.00hs PILATES - Profe BERU</p>
-            <p>09.00hs PILATES - Profe BERU</p>
-            <p>10.00hs PILATES - Profe BERU</p>
-            <p>11.00hs PILATES - Profe BERU</p>
-            <p>15.00hs PILATES - Profe BERU</p>
-            <p>16.00hs PILATES - Profe BERU</p>
-            <p>17.00hs PILATES - Profe BERU</p>
-            <p>18.00hs YOGA DINÁMICO - Profe DANI</p>
-            <p>19.30hs YOGA DINÁMICO - Profe DANI</p>
-        </div>
-    </div>
-
-    <div class="column">
-        <div class="card">
-            
-            <h2>Jueves</h2>
-            <p>08.00hs PILATES - Profe BERU</p>
-            <p>09.00hs PILATES - Profe BERU</p>
-            <p>10.00hs YOGA - Profe BERU</p>
-            <p>11.00hs YOGA - Profe BERU</p>
-            <p>15.00hs YOGA - Profe BERU</p>
-            <p>16.00hs YOGA - Profe BERU</p>
-            <p>17.00hs YOGA - Profe BERU</p>
-            <p>18.00hs PILATES - Profe BERU</p>
-            <p>19.00hs YOGA DINÁMICO - Profe BERU</p>
-        </div>
-    </div>
-
-    <div class="column">
-        <div class="card">
-            
-            <h2>Viernes</h2>
-            <p>08.00hs PILATES - Profe SUSY</p>
-            <p>09.00hs PILATES - Profe SUSY</p>
-            <p>10.00hs HATHA YOGA - Profe THEO</p>
-            <p>11.00hs PILATES - Profe SUSY</p>
-        </div>
-    </div>
-
-    <div class="column">
-        <div class="card">
-            
-            <h2>Sábado</h2>
-            <p>Próximamente!</p>
-        </div>
-    </div>
-
-    
-
-</div>
 </template>
 
 <script>
@@ -95,24 +100,27 @@ export default {
     box-sizing: border-box;
     
 }
-
-section {
-    min-height: 100vh; /* Cambiado a min-height para asegurar que ocupe al menos 100vh */
-    width: 100%;
-    display: grid;
-    place-items: center;
-    padding-bottom: 80px; /* Ajusta este valor según la altura de tu footer */
-    overflow: auto;
-    height: fit-content;
-}
-.section-heading {
+.agenda {
+    text-align: center;
+    margin-bottom: 60px;
     display: flex;
-    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
 }
-.section-heading h3{
-    color: #fff;
-    margin: 2em 0;
-    font-size: 40px;
+.agenda-text{
+    color: white;
+    background-color: #5761b2;
+    padding: 10px; 
+    border-radius: 20px 20px 0 20px;
+    width: 300px;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s;
+}
+.agenda-text:hover {
+  background-color: rgba(87, 97, 178, 0.8); /* Ajusta el canal alfa según tus preferencias */
 }
 .row {
     display: flex;

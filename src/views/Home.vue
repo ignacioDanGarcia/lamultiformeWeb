@@ -30,8 +30,14 @@ export default {
   <div>
     <Navbar :isLoggedIn="isLoggedIn" @logout="handleLogout" />
     <router-view :isLoggedIn="isLoggedIn" @logged-in="handleLoggedIn" />
-    <br><br><br>
-    <br><br><br>
+    <div class="foto-fondo">
+      <img src="..\assets\home_camas.jpeg" alt="Descripción de la imagen" >
+      <div class="titulo">
+        <h1>La Multiforme</h1>
+      </div>
+      
+    </div>
+    
     <Agenda />
     <br><br><br>
     <Footer />
@@ -39,5 +45,33 @@ export default {
 </template>
 
 <style scoped>
+.foto-fondo{
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+.foto-fondo img{
+  margin: 20px 0;
+  width: 100%;
+  height: 1000px;
+  min-height: 300px;
+  object-fit: cover;
+  object-position: center;
+}
 
+.titulo h1{
+  margin-top: auto;
+  position: absolute;
+  top: 45%;
+  left: 20%;
+  transform: translate(0%, -50%);
+  color: #fff;
+  font-size: 4em;
+}
+
+@media(max-width: 630px){
+    .titulo h1{
+      font-size: 2em;
+    }
+}
 </style>
