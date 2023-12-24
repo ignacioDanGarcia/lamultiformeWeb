@@ -32,7 +32,7 @@ export default {
     <router-view :isLoggedIn="isLoggedIn" @logged-in="handleLoggedIn" />
     <br><br><br>
     <br><br><br>
-    <!--<Agenda />-->
+    <Agenda />
     <br><br><br>
     <Footer />
   </div>
