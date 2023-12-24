@@ -91,11 +91,16 @@ p {
     color: black;
     text-align: left;
 }
-
+@media(max-width: 440px){
+    .aviso{
+        margin-top: 200px;
+        margin-bottom: 150px;
+    }
+}
 @media(max-width: 360px){
     .aviso{
-        margin-top: 400px;
-        margin-bottom: 350px;
+        margin-top: 300px;
+        margin-bottom: 250px;
     }
 }
 </style>
