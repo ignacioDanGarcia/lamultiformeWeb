@@ -12,13 +12,10 @@
                 <li><router-link to="/">Profes</router-link></li>
                 <li><router-link to="/">Talleres</router-link></li>
                 <li><router-link to="/">Libros</router-link></li>
-                <li v-if="!isLoggedIn"><router-link to="/login">Iniciar sesión</router-link></li>
-                <li v-if="isLoggedIn">
-                    <router-link to="/calendario">Calendario</router-link>
-                    <button @click="logout">Cerrar sesión</button>
-                </li>
+                <li v-if="isAuthenticated"><router-link v-if="isAuthenticated" to="/calendario">Calendario</router-link></li>
+                <li v-if="isAuthenticated"><router-link to="/"><button @click="logout">Cerrar sesión</button></router-link></li>
+                <li v-else><router-link to="/login">Iniciar sesión</router-link></li>
             </ul>
-            
             
         </nav>
 </template>
@@ -26,16 +23,23 @@
 <script>
 export default {
   name: 'Navbar',
-  props: ['isLoggedIn'],
+  computed: {
+    isAuthenticated() {
+      return this.$store.state.isAuthenticated;
+    },
+  },
   methods: {
     logout() {
+      const auth = this.$store.state.manualLogout
+        ? this.$store.commit('setManualLogout', false) // Si es un cierre de sesión manual, restablece la variable
+        : this.$store.commit('setAuth', false); // Si no es manual, cierra la sesión normalmente
 
-      this.$emit('logout');
       this.$router.push('/');
     },
   },
 };
 </script>
+
 
 <style scoped>
 nav{

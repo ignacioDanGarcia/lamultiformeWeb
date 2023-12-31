@@ -23,7 +23,7 @@
           headerToolbar: {
           left: 'prev,next today',
           center: 'title',
-          right: 'dayGridMonth,timeGridWeek,dayGridDay,listWeek',
+          right: 'dayGridMonth,timeGridWeek dayGridDay,listWeek',
           },
           titleFormat: { year: 'numeric', month: 'long' },
           weekends: true,
@@ -51,8 +51,22 @@
 <style  scoped>
 .fc {
     padding-top: 20px;
-    background-color: #111;
-    color: #ffa44e;
+    padding-bottom: 20px;
+    background-color: #ffa44e;
+    color: #111;
     font-size: 11px;
+    padding-right: 30px;
+    padding-left: 30px;
+
+}
+@media (max-width: 767px) {
+  .fc{
+    height: 470px;
+  }
+  @media(max-width: 574px){
+    .fc{
+      font-size: 9px;
+  }
+  }
 }
 </style>

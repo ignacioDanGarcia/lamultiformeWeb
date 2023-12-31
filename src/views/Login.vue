@@ -11,22 +11,21 @@
 			</div>
 			<button class="btn" @click="login">Ingresá</button>
 			<p>¿Todavía no tenés una cuenta? <router-link class="router" to="/signup">Registrate acá!</router-link></p>
+      <p>¿Olvidaste tu contraseña? <router-link class="router" to="/restaurar-pass">Restaurala acá!</router-link></p>
 		</div>
 	</div>
 </template>
 
 <script>
-import { initializeApp } from 'firebase/app';
-
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
 export default {
   name: 'Login',
   data() {
     return {
-      email: "",
-      password: "",
-    }
+      email: '',
+      password: '',
+    };
   },
   methods: {
     login() {
@@ -35,16 +34,31 @@ export default {
         .then(
           (userCredential) => {
             console.log(userCredential.user);
-            this.$emit('logged-in');
-            this.$router.push('/');
+            this.$store.commit('setAuth', true);
+            this.$router.push('/calendario');
           },
           (err) => {
-            alert(err.message);
+            this.handleFirebaseError(err);
           }
-        );
-    }
-  }
-}
+        )
+        .catch((error) => {
+          console.error("Error during login:", error);
+        });
+    },
+    handleFirebaseError(error) {
+      const errorMessages = {
+        'auth/user-not-found': 'La cuenta no existe. Regístrate para crear una nueva cuenta.',
+        'auth/wrong-password': 'La contraseña es incorrecta. Intenta nuevamente.',
+        // agregar más mensajes de error si es necesario
+      };
+
+      const errorMessage = errorMessages[error.code] || 'Hubo un error. Inténtalo nuevamente.';
+
+      alert(errorMessage);
+    },
+  },
+};
+
 </script>
 
 <style>
