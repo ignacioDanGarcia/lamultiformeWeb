@@ -24,7 +24,7 @@
           headerToolbar: {
           left: 'prev,next today',
           center: 'title',
-          right: 'dayGridMonth,timeGridWeek dayGridDay,listWeek',
+          right: 'dayGridMonth,dayGridDay listWeek',
           },
           titleFormat: { year: 'numeric', month: 'long' },
           weekends: true,
@@ -53,50 +53,50 @@
       const uid = this.$store.state.user;
 
       try {
-        // Paso 1: Obtén los documentos de usuario_evento_rel para el usuario actual
+        
         const userEventsQuery = query(
           collection(db, 'usuario_evento_rel'),
           where('usuario_uid', '==', uid)
         );
         const userEventsSnapshot = await getDocs(userEventsQuery);
 
-        // Paso 2: Para cada documento en usuario_evento_rel, obtén la información del evento correspondiente
+        
         const eventos = [];
         for (const userEventDoc of userEventsSnapshot.docs) {
           const eventoId = userEventDoc.data().oid_evento.id;
-          console.log(eventoId);
-          // Obtén el documento correspondiente en la colección eventos
+          
           const eventoDocRef = doc(db, 'eventos', eventoId);
           const eventoDoc = await getDoc(eventoDocRef);
           
           if (eventoDoc.exists()) {
-            // Obtén información adicional (título, fecha) del evento
+            
             const tituloId = eventoDoc.data().oid_titulo.id;
 
-            // Obtén el documento correspondiente en la colección titulos
+            
             const tituloDocRef = doc(db, 'titulos', tituloId);
             const tituloDoc = await getDoc(tituloDocRef);
 
             if (tituloDoc.exists()) {
-              // Obtén el nombre del título
+              
               const nombreTitulo = tituloDoc.data().nombre;
               const colorCod = tituloDoc.data().color;
 
-              // Obtén información adicional (fecha) del evento
+              
               const fecha = eventoDoc.data().fecha;
-
-              // Agrega el evento al arreglo eventos
+              const dia = [fecha];
+              const hora = eventoDoc.data().hora_inicio;
+              
               eventos.push({
-                title: nombreTitulo,
-                start: fecha,
+                title: `${nombreTitulo} ${hora}`,
+                daysOfWeek: dia,
                 backgroundColor: colorCod,
-                // Puedes agregar más propiedades según sea necesario
+                
               });
             }
           }
         }
 
-        // Paso 3: Actualiza el estado de los eventos en tu componente
+        
         this.calendarOptions.events = eventos;
       } catch (error) {
         console.error('Error loading user events:', error);
