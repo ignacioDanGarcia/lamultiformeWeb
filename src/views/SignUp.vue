@@ -34,7 +34,8 @@ export default {
       createUserWithEmailAndPassword(auth, this.email, this.password)
         .then(
           (userCredential) => {
-            console.log(userCredential.user);
+            const uid = userCredential.user.uid;
+            this.$store.commit('setUser', uid);
             this.$store.commit('setAuth', true);
             this.$router.push('/calendario');
           },

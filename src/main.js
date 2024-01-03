@@ -7,6 +7,7 @@ import { createVuetify } from 'vuetify';
 import 'vuetify/dist/vuetify.css';
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
+import { getFirestore } from 'firebase/firestore';
 import store from './store/store.js';
 
 const firebaseConfig = {
@@ -19,7 +20,8 @@ const firebaseConfig = {
 };
 
 const firebaseApp = initializeApp(firebaseConfig);
-const auth_ = getAuth(firebaseApp);
+const auth = getAuth(firebaseApp);
+const firestore = getFirestore(firebaseApp);
 
 
 
@@ -38,10 +40,9 @@ const vuetify = createVuetify({
     iconfont: 'mdiSvg'
   },
 });
+store.commit('setFirestore', firestore);
 
 app.use(router);
 app.use(store);
 app.use(vuetify);
 app.mount('#app');
-
-export { auth_, firebaseApp };

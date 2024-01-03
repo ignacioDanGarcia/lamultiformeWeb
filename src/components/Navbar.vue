@@ -31,8 +31,9 @@ export default {
   methods: {
     logout() {
       const auth = this.$store.state.manualLogout
-        ? this.$store.commit('setManualLogout', false) // Si es un cierre de sesión manual, restablece la variable
-        : this.$store.commit('setAuth', false); // Si no es manual, cierra la sesión normalmente
+        ? this.$store.commit('setManualLogout', false)
+        : this.$store.commit('setAuth', false);
+        this.$store.commit('setUser', null);
 
       this.$router.push('/');
     },
