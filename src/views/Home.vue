@@ -10,26 +10,14 @@ export default {
     Agenda,
     Footer,
   },
-  data() {
-    return {
-      isLoggedIn: false,
-    };
-  },
-  methods: {
-    handleLoggedIn(isLoggedIn) {
-      this.isLoggedIn = isLoggedIn;
-    },
-    handleLogout() {
-      this.isLoggedIn = false;
-    },
-  },
+
 };
 </script>
 
 <template>
   <div>
-    <Navbar :isLoggedIn="isLoggedIn" @logout="handleLogout" />
-    <router-view :isLoggedIn="isLoggedIn" @logged-in="handleLoggedIn" />
+    <Navbar  />
+    <router-view  />
     <div class="foto-fondo">
       <img src="..\assets\home_camas.jpeg" alt="Descripción de la imagen" >
       <div class="titulo">

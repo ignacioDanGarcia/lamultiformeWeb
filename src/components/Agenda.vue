@@ -1,96 +1,78 @@
 <template>
     <div>
-        <div class="agenda">
-            <h1 class="agenda-text">Agenda</h1>
-        </div>
-        
-        <div class="row">
-            <div class="column">
-                <div class="card">
-                    
-                    <h2>Lunes</h2>
-                        <p>8.00hs PILATES - Profe SUSY</p>
-                        <p>9.00hs PILATES - Profe SUSY</p>
-                        <p>10.00hs PILATES - Profe SUSY</p>
-                        <p>11.00hs PILATES - Profe SUSY</p>
-                        <p>15.00hs PILATES - Profe BERU</p>
-                        <p>16.00hs PILATES - Profe BERU</p>
-                        <p>17.00hs PILATES - Profe BERU</p>
-                        <p>18.30hs HATHA YOGA DINAMICO - Profe BERU</p>
-                </div>
-            </div>
-
-            <div class="column">
-                <div class="card">
-                    
-                    <h2>Martes</h2>
-                    <p>15.00hs PILATES - Profe BERU</p>
-                    <p>16.00hs YOGA - Profe BERU</p>
-                    <p>17.00hs YOGA - Profe BERU</p>
-                    <p>19.30hs PILATES - Profe BERU</p>
-                </div>
-            </div>
-
-            <div class="column">
-                <div class="card">
-                    
-                    <h2>Miércoles</h2>
-                    <p>08.00hs PILATES - Profe BERU</p>
-                    <p>09.00hs PILATES - Profe BERU</p>
-                    <p>10.00hs PILATES - Profe BERU</p>
-                    <p>11.00hs PILATES - Profe BERU</p>
-                    <p>15.00hs PILATES - Profe BERU</p>
-                    <p>16.00hs PILATES - Profe BERU</p>
-                    <p>17.00hs PILATES - Profe BERU</p>
-                    <p>18.00hs YOGA DINÁMICO - Profe DANI</p>
-                    <p>19.30hs YOGA DINÁMICO - Profe DANI</p>
-                </div>
-            </div>
-
-            <div class="column">
-                <div class="card">
-                    
-                    <h2>Jueves</h2>
-                    <p>08.00hs PILATES - Profe BERU</p>
-                    <p>09.00hs PILATES - Profe BERU</p>
-                    <p>10.00hs YOGA - Profe BERU</p>
-                    <p>11.00hs YOGA - Profe BERU</p>
-                    <p>15.00hs YOGA - Profe BERU</p>
-                    <p>16.00hs YOGA - Profe BERU</p>
-                    <p>17.00hs YOGA - Profe BERU</p>
-                    <p>18.00hs PILATES - Profe BERU</p>
-                    <p>19.00hs YOGA DINÁMICO - Profe BERU</p>
-                </div>
-            </div>
-
-            <div class="column">
-                <div class="card">
-                    
-                    <h2>Viernes</h2>
-                    <p>08.00hs PILATES - Profe SUSY</p>
-                    <p>09.00hs PILATES - Profe SUSY</p>
-                    <p>10.00hs HATHA YOGA - Profe THEO</p>
-                    <p>11.00hs PILATES - Profe SUSY</p>
-                </div>
-            </div>
-
-            <div class="column">
-                <div class="card">
-                    
-                    <h2>Sábado</h2>
-                    <p>Próximamente!</p>
-                </div>
-            </div>
-
+      <div class="agenda">
+        <h1 class="agenda-text">Agenda</h1>
+      </div>
+  
+      <div class="row">
+        <div v-for="(day, index) in filteredDaysOfWeek" :key="index" class="column">
+            <div  class="card">
+              <h2>{{ day }}</h2>
+              <p v-for="event in getEventsByDay(index)" :key="event.id">
+                {{ event.start }} {{ event.title }} - Profe {{ event.profe }}
+              </p>
             
+          </div>
         </div>
+      </div>
     </div>
-</template>
+  </template>
 
 <script>
+import { getFirestore, collection, getDocs, query, getDoc, doc } from 'firebase/firestore';
+import store from '../store/store';
+
 export default {
-  name: 'Agenda'
-}
+  name: 'Agenda',
+  data() {
+    return {
+      events: [],
+      daysOfWeek: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+    };
+  },
+  computed: {
+    filteredDaysOfWeek() {
+      //aca filtra los dias de la semana para omitir el domingo (index 0)
+      return this.daysOfWeek.filter((day, index) => index > 0);
+    },
+  },
+  methods: {
+    async loadEvents() {
+        const db = getFirestore(store.state.firebaseApp);
+        const eventsQuery = query(collection(db, 'eventos'));
+        const eventsSnapshot = await getDocs(eventsQuery);
+
+        
+        const eventsPromises = eventsSnapshot.docs.map(async (eventDoc) => {
+          const data = eventDoc.data();
+          const tituloDocRef = doc(db, 'titulos', data.oid_titulo.id);
+          const profeDocRef = doc(db, 'profes', data.oid_profe.id);
+
+          //usa Promise.all para esperar las dos consultas antes de continuar
+          const [tituloDoc, profeDoc] = await Promise.all([getDoc(tituloDocRef), getDoc(profeDocRef)]);
+
+          const nombreTitulo = tituloDoc.exists() ? tituloDoc.data().nombre : 'Sin título';
+          const nombreProfe = profeDoc.exists() ? profeDoc.data().nombre : 'Sin profesor';
+          return {
+            id: eventDoc.id,
+            start: data.hora_inicio,
+            title: nombreTitulo,
+            profe: nombreProfe,
+            day: data.fecha,
+          };
+        });
+
+        //espera a que todas las promesas se resuelvan antes de asignar a this.events
+        this.events = await Promise.all(eventsPromises);
+      },
+    getEventsByDay(day) {
+      return this.events.filter((event) => event.day === day);
+    },
+  },
+  async created() {
+    await this.loadEvents();
+  },
+};
 </script>
 
 <style scoped>

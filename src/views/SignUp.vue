@@ -16,18 +16,16 @@
 </template>
 
 
+<!-- SignUp.vue -->
 <script>
-import { initializeApp } from 'firebase/app';
-
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
-
 
 export default {
   name: 'SignUp',
   data() {
     return {
-      email: "",
-      password: "",
+      email: '',
+      password: '',
     };
   },
   methods: {
@@ -36,18 +34,32 @@ export default {
       createUserWithEmailAndPassword(auth, this.email, this.password)
         .then(
           (userCredential) => {
-            console.log(userCredential.user);
-            this.$emit('logged-in', true);
-            this.$router.push('/');
+            const uid = userCredential.user.uid;
+            this.$store.commit('setUser', uid);
+            this.$store.commit('setAuth', true);
+            this.$router.push('/calendario');
           },
           (err) => {
-            alert(err.message);
+            this.handleFirebaseError(err);
           }
         );
+    },
+    handleFirebaseError(error) {
+      const errorMessages = {
+        'auth/email-already-in-use': 'El correo electrónico ya está en uso. Por favor, inicia sesión o utiliza otro correo electrónico.',
+        'auth/weak-password': 'La contraseña es débil. Debe tener al menos 6 caracteres.',
+        'auth/invalid-email': 'El formato del correo electrónico no es válido.',
+        // agregar más mensajes de error si es necesario
+      };
+
+      const errorMessage = errorMessages[error.code] || 'Error de autenticación. Inténtalo nuevamente.';
+
+      alert(errorMessage);
     },
   },
 };
 </script>
+
 
 
 <style>

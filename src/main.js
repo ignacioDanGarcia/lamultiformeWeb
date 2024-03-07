@@ -1,13 +1,14 @@
-import './assets/main.css'
+import './assets/main.css';
 
 import { createApp } from 'vue';
 import App from './App.vue';
 import router from './router';
-import { initializeApp } from 'firebase/app';
 import { createVuetify } from 'vuetify';
-import 'firebase/auth';
-import 'vuetify/dist/vuetify.css'; // Asegúrate de importar el CSS de Vuetify
-
+import 'vuetify/dist/vuetify.css';
+import { initializeApp } from 'firebase/app';
+import { getAuth } from 'firebase/auth';
+import { getFirestore } from 'firebase/firestore';
+import store from './store/store.js';
 
 const firebaseConfig = {
   apiKey: "AIzaSyBiWNKU1XQWPCsx7ddE4A-HZz_ATwD-A_c",
@@ -18,10 +19,13 @@ const firebaseConfig = {
   appId: "1:392964231935:web:754130ecd56d54dabe72ca"
 };
 
-initializeApp(firebaseConfig);
+const firebaseApp = initializeApp(firebaseConfig);
+const auth = getAuth(firebaseApp);
+const firestore = getFirestore(firebaseApp);
+
+
 
 const app = createApp(App);
-
 const vuetify = createVuetify({
   theme: {
     primary: '#1976D2',
@@ -35,10 +39,10 @@ const vuetify = createVuetify({
   icons: {
     iconfont: 'mdiSvg'
   },
-  // Otras opciones según tus necesidades
 });
+store.commit('setFirestore', firestore);
 
 app.use(router);
+app.use(store);
 app.use(vuetify);
 app.mount('#app');
-

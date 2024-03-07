@@ -9,21 +9,34 @@ A distinctive feature is the ability of users to request specific schedules and 
 ## Firebase Database Schema
 
 /eventos
+
   /{eventoId}
+
     - tituloId: "1"
+
     - fecha: "2023-03-26"
+
     - hora_inicio: "18:00"
+
     - hora_fin: "19:00"
 
+
 /titulos
+
   /{tituloId}
+
     - nombre: "Yoga"
+
     - color: "#5761b2"
 
+
 /propietarios_x_eventos
+
   /{propietarioId_eventoId} 
+
     - propietarioId: "1" // id recovered from firebase authentication
-    - eventoId: "abc123" 
+    
+    - eventoId: "abc123"
 
 ## Project Local Setup
 

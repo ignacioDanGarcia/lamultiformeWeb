@@ -3,12 +3,13 @@ import Login from '../views/Login.vue';
 import SignUp from '../views/SignUp.vue';
 import Home from '../views/Home.vue';
 import Calendario from '../views/Calendar.vue';
+import OlvidoContrasenia from '../views/OlvidoContrasenia.vue';
 
 import AvisoLegal from '../views-footer/AvisoLegal.vue';
 import Terminos from '../views-footer/Terminos.vue';
 import Politicas from '../views-footer/Politicas.vue';
 import CancelarSus from '../views-footer/CancelarSus.vue';
-
+import store from '../store/store';
 
 
 const routes = [
@@ -27,11 +28,17 @@ const routes = [
     name: 'SignUp',
     component: SignUp
   },
-  /*{
+  {
     path: '/calendario',
     name: 'Calendario',
-    component: Calendario
-  },*/
+    component: Calendario,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/restaurar-pass',
+    name: 'OlvidoContrasenia',
+    component: OlvidoContrasenia
+  },
   {
     path: '/aviso-legal',
     name: 'AvisoLegal',
@@ -58,5 +65,12 @@ const router = createRouter({
   history: createWebHistory(),
   routes
 })
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth) && !store.state.isAuthenticated) {
+    next('/login');
+  } else {
+    next();
+  }
+});
 
 export default router
