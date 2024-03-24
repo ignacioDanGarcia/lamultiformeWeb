@@ -8,7 +8,7 @@
         <div v-for="(day, index) in filteredDaysOfWeek" :key="index" class="column">
             <div  class="card">
               <h2>{{ day }}</h2>
-              <p v-for="event in getEventsByDay(index)" :key="event.id">
+              <p v-for="event in getEventsByDay(index+1)" :key="event.id">
                 {{ event.start }} {{ event.title }} - Profe {{ event.profe }}
               </p>
             
@@ -47,12 +47,13 @@ export default {
           const data = eventDoc.data();
           const tituloDocRef = doc(db, 'titulos', data.oid_titulo.id);
           const profeDocRef = doc(db, 'profes', data.oid_profe.id);
-
+          
           //usa Promise.all para esperar las dos consultas antes de continuar
           const [tituloDoc, profeDoc] = await Promise.all([getDoc(tituloDocRef), getDoc(profeDocRef)]);
-
+          
           const nombreTitulo = tituloDoc.exists() ? tituloDoc.data().nombre : 'Sin título';
           const nombreProfe = profeDoc.exists() ? profeDoc.data().nombre : 'Sin profesor';
+          
           return {
             id: eventDoc.id,
             start: data.hora_inicio,
@@ -61,13 +62,15 @@ export default {
             day: data.fecha,
           };
         });
-
+        
         //espera a que todas las promesas se resuelvan antes de asignar a this.events
         this.events = await Promise.all(eventsPromises);
       },
     getEventsByDay(day) {
-      return this.events.filter((event) => event.day === day);
+      
+      return this.events.filter((event) => event.day == day);
     },
+
   },
   async created() {
     await this.loadEvents();
