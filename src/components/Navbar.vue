@@ -25,16 +25,18 @@ export default {
   name: 'Navbar',
   computed: {
     isAuthenticated() {
-      return this.$store.state.isAuthenticated;
+        if (localStorage.getItem('isAuthenticated') == 'true'){
+            this.$store.commit('setAuth', true);
+            
+        }
+        return this.$store.state.isAuthenticated;
     },
   },
   methods: {
     logout() {
-      const auth = this.$store.state.manualLogout
-        ? this.$store.commit('setManualLogout', false)
-        : this.$store.commit('setAuth', false);
+      const auth = this.$store.commit('setAuth', false);
         this.$store.commit('setUser', null);
-
+        localStorage.setItem('isAuthenticated', false);
       this.$router.push('/');
     },
   },

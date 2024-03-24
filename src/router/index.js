@@ -11,7 +11,9 @@ import Politicas from '../views-footer/Politicas.vue';
 import CancelarSus from '../views-footer/CancelarSus.vue';
 import store from '../store/store';
 
-
+const isAuthenticated = () => {
+  return localStorage.getItem('isAuthenticated') === 'true';
+};
 const routes = [
   {
     path: '/',
@@ -66,11 +68,11 @@ const router = createRouter({
   routes
 })
 router.beforeEach((to, from, next) => {
-  if (to.matched.some(record => record.meta.requiresAuth) && !store.state.isAuthenticated) {
+  if (to.matched.some(record => record.meta.requiresAuth) && !isAuthenticated()) {
     next('/login');
   } else {
     next();
   }
 });
 
-export default router
+export default router;
