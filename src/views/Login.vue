@@ -36,6 +36,7 @@ export default {
             const uid = userCredential.user.uid;
             this.$store.commit('setUser', uid);
             this.$store.commit('setAuth', true);
+            localStorage.setItem('isAuthenticated', true);
             this.$router.push('/calendario');
           },
           (err) => {
