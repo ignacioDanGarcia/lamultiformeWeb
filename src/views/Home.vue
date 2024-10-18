@@ -2,6 +2,7 @@
 import Navbar from '../components/Navbar.vue';
 import Agenda from '../components/Agenda.vue';
 import Footer from '../components/Footer.vue';
+import Consultas from '../components/Consultas.vue';
 
 export default {
   name: 'Home',
@@ -9,6 +10,7 @@ export default {
     Navbar,
     Agenda,
     Footer,
+    Consultas,
   },
 
 };
@@ -28,6 +30,7 @@ export default {
     
     <Agenda />
     <br><br><br>
+    <Consultas  />
     <Footer />
   </div>
 </template>

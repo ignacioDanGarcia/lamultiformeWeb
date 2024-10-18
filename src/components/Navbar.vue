@@ -12,9 +12,9 @@
                 <li><router-link to="/">Profes</router-link></li>
                 <li><router-link to="/">Talleres</router-link></li>
                 <li><router-link to="/">Libros</router-link></li>
-                <li v-if="isAuthenticated"><router-link to="/calendario">Calendario</router-link></li>
-                <li v-if="isAuthenticated"><router-link to="/"><button @click="logout">Cerrar sesión</button></router-link></li>
-                <li v-else><router-link to="/login">Iniciar sesión</router-link></li>
+                <!--<li v-if="isAuthenticated"><router-link to="/calendario">Calendario</router-link></li>-->
+                <!--<li v-if="isAuthenticated"><router-link to="/"><button @click="logout">Cerrar sesión</button></router-link></li>-->
+                <!--<li v-else><router-link to="/login">Iniciar sesión</router-link></li>-->
             </ul>
             
         </nav>
@@ -24,21 +24,21 @@
 export default {
   name: 'Navbar',
   computed: {
-    isAuthenticated() {
-        if (localStorage.getItem('isAuthenticated') == 'true'){
-            this.$store.commit('setAuth', true);
-            
-        }
-        return this.$store.state.isAuthenticated;
-    },
+    //isAuthenticated() {
+    //    if (localStorage.getItem('isAuthenticated') == 'true'){
+    //        this.$store.commit('setAuth', true);
+    //        
+    //    }
+    //    return this.$store.state.isAuthenticated;
+    //},
   },
   methods: {
-    logout() {
-      const auth = this.$store.commit('setAuth', false);
-        this.$store.commit('setUser', null);
-        localStorage.setItem('isAuthenticated', false);
-      this.$router.push('/');
-    },
+    //logout() {
+    //  const auth = this.$store.commit('setAuth', false);
+    //    this.$store.commit('setUser', null);
+    //    localStorage.setItem('isAuthenticated', false);
+    //  this.$router.push('/');
+    //},
   },
 };
 </script>
