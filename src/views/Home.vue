@@ -2,6 +2,8 @@
 import Navbar from '../components/Navbar.vue';
 import Agenda from '../components/Agenda.vue';
 import Footer from '../components/Footer.vue';
+import Consultas from '../components/Consultas.vue';
+import Clases from '../components/Clases.vue';
 
 export default {
   name: 'Home',
@@ -9,6 +11,8 @@ export default {
     Navbar,
     Agenda,
     Footer,
+    Consultas,
+    Clases,
   },
 
 };
@@ -22,12 +26,14 @@ export default {
       <img src="..\assets\home_camas.jpeg" alt="Descripción de la imagen" >
       <div class="titulo">
         <h1>La Multiforme</h1>
+        <!--<h2>Un espacio para practicar Yoga, Pilates y hacer arte</h2>-->
       </div>
       
     </div>
     
     <Agenda />
-    <br><br><br>
+    <Clases  />
+    <Consultas  />
     <Footer />
   </div>
 </template>

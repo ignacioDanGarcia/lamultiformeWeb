@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import Login from '../views/Login.vue';
 import SignUp from '../views/SignUp.vue';
 import Home from '../views/Home.vue';
-import Calendario from '../views/Calendar.vue';
+import ListaLibros from '../views/ListaLibros.vue';
 import OlvidoContrasenia from '../views/OlvidoContrasenia.vue';
 
 import AvisoLegal from '../views-footer/AvisoLegal.vue';
@@ -21,6 +21,11 @@ const routes = [
     component: Home
   },
   {
+    path: '/lista-libros',
+    name: 'ListaLibros',
+    component: ListaLibros
+  },
+  {
     path: '/login',
     name: 'Login',
     component: Login
@@ -29,12 +34,6 @@ const routes = [
     path: '/signup',
     name: 'SignUp',
     component: SignUp
-  },
-  {
-    path: '/calendario',
-    name: 'Calendario',
-    component: Calendario,
-    meta: { requiresAuth: true }
   },
   {
     path: '/restaurar-pass',

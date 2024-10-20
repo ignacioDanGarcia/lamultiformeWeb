@@ -3,6 +3,9 @@
       <div class="agenda">
         <h1 class="agenda-text">Agenda</h1>
       </div>
+      <div class="subagenda">
+        <h2 class="section__header">Descubrí los horarios de nuestras clases!</h2>
+      </div>
   
       <div class="row">
         <div v-for="(day, index) in filteredDaysOfWeek" :key="index" class="column">
@@ -66,10 +69,17 @@ export default {
         //espera a que todas las promesas se resuelvan antes de asignar a this.events
         this.events = await Promise.all(eventsPromises);
       },
-    getEventsByDay(day) {
-      
-      return this.events.filter((event) => event.day == day);
-    },
+      getEventsByDay(day) {
+        return this.events
+          .filter((event) => event.day == day)
+          .sort((a, b) => {
+          // Eliminamos la parte 'hs' y convertimos la hora a un número
+          const hourA = parseInt(a.start.replace('hs', '').trim(), 10);
+          const hourB = parseInt(b.start.replace('hs', '').trim(), 10);
+
+          return hourA - hourB;
+        });
+      },
 
   },
   async created() {
@@ -85,9 +95,16 @@ export default {
     box-sizing: border-box;
     
 }
+.section__header {
+  font-size: 3rem;
+  font-weight: 300;
+  text-align: center;
+  color: var(--text-dark);
+  margin-top: 1rem;
+}
 .agenda {
     text-align: center;
-    margin-bottom: 60px;
+    margin-bottom: 0px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -135,6 +152,28 @@ h2 {
     font-weight: 600;
     color: #5761b2;
     margin: 1em 0;
+}
+.subagenda {
+  margin: 0 4rem 0 4rem;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+h3{
+  width: 90%;
+  text-align: center;
+  font-size: 17px;
+  color: #272727;
+  
 }
 
 p {
@@ -197,5 +236,14 @@ p {
         max-width: 33.33%;
     }
 }
-
+  @media (max-width: 743px) {
+    .section__header {
+      font-size: 2rem;
+    }
+  }
+  @media (max-width: 400px) {
+    .section__header {
+      font-size: 1.3rem;
+    }
+  }
 </style>
