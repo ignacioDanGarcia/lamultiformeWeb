@@ -236,5 +236,14 @@ p {
         max-width: 33.33%;
     }
 }
-
+  @media (max-width: 743px) {
+    .section__header {
+      font-size: 2rem;
+    }
+  }
+  @media (max-width: 400px) {
+    .section__header {
+      font-size: 1.3rem;
+    }
+  }
 </style>

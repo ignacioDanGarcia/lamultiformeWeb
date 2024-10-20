@@ -189,4 +189,14 @@ body {
         grid-template-columns: repeat(2, 1fr); /* Dos columnas para pantallas menores a 768px */
     }
 }
+@media (max-width: 743px) {
+    .section__header {
+      font-size: 2rem;
+    }
+  }
+  @media (max-width: 400px) {
+    .section__header {
+      font-size: 1.3rem;
+    }
+  }
 </style>
