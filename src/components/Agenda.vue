@@ -4,7 +4,7 @@
         <h1 class="agenda-text">Agenda</h1>
       </div>
       <div class="subagenda">
-        <h3>Descubre los horarios de nuestras clases y encuentra el momento perfecto para tu bienestar. ¡Ajusta tu práctica de yoga y pilates a tu ritmo de vida!</h3>
+        <h2 class="section__header">Descubrí los horarios de nuestras clases!</h2>
       </div>
   
       <div class="row">
@@ -95,6 +95,13 @@ export default {
     box-sizing: border-box;
     
 }
+.section__header {
+  font-size: 3rem;
+  font-weight: 300;
+  text-align: center;
+  color: var(--text-dark);
+  margin-top: 1rem;
+}
 .agenda {
     text-align: center;
     margin-bottom: 0px;
@@ -147,7 +154,7 @@ h2 {
     margin: 1em 0;
 }
 .subagenda {
-  margin: 1rem 4rem 4rem 4rem;
+  margin: 0 4rem 0 4rem;
   display: flex;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
@@ -166,6 +173,7 @@ h3{
   text-align: center;
   font-size: 17px;
   color: #272727;
+  
 }
 
 p {

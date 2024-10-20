@@ -24,10 +24,16 @@
     align-items: center;
     justify-content: center;
 }
+.boton-contacto-text:hover{
+    background-color: #fff;
+    color: #ffa44e;
+    opacity: 0.7;
+}
 .boton-contacto-text{
     text-decoration: none;
-    color: black;
+    color: #000;
     font-size: 17px;
+    margin-bottom: 50px;
     background-color: #ffa44e;
     padding: 20px; 
     border-radius: 20px 20px 0 20px;
@@ -71,6 +77,7 @@
   font-size: 1.5rem;
   width: 90%;
   color: #272727;
+  margin-bottom: 15px;
 }
 
 .questions-container .container .image img {
