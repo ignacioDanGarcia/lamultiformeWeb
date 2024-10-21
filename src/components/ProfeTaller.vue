@@ -69,9 +69,9 @@
     flex: 1;
     display: flex;
     justify-content: center;
-    border: 4px solid #fff; /* Borde blanco de 2 píxeles */
-    border-radius: 10px; /* Esquinas redondeadas */
-    overflow: hidden; /* Recorta la imagen para que siga la forma redondeada */
+    border: 4px solid #fff;
+    border-radius: 10px;
+    overflow: hidden;
   }
   
   .profe-imagen img {
