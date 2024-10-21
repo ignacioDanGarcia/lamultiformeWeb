@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import Login from '../views/Login.vue';
 import SignUp from '../views/SignUp.vue';
 import Home from '../views/Home.vue';
 import ListaLibros from '../views/ListaLibros.vue';
+import ListaProfesTaller from '../views/ListaProfesTaller.vue';
 import OlvidoContrasenia from '../views/OlvidoContrasenia.vue';
 
 import AvisoLegal from '../views-footer/AvisoLegal.vue';
@@ -26,9 +26,9 @@ const routes = [
     component: ListaLibros
   },
   {
-    path: '/login',
-    name: 'Login',
-    component: Login
+    path: '/taller-literario',
+    name: 'ListaProfesTaller',
+    component: ListaProfesTaller
   },
   {
     path: '/signup',

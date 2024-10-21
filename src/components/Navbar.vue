@@ -10,7 +10,7 @@
             <ul class="menu">
                 <li><router-link to="/">La multi</router-link></li>
                 <li><router-link to="/">Profes</router-link></li>
-                <li><router-link to="/">Talleres</router-link></li>
+                <li><router-link to="/taller-literario">Taller Literario</router-link></li>
                 <li><router-link to="/lista-libros">Libros</router-link></li>
                 <!--<li v-if="isAuthenticated"><router-link to="/calendario">Calendario</router-link></li>-->
                 <!--<li v-if="isAuthenticated"><router-link to="/"><button @click="logout">Cerrar sesión</button></router-link></li>-->
