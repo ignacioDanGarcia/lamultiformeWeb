@@ -31,10 +31,6 @@
     margin: 40px 200px;
     border-radius: 10px;
     padding: 30px 40px;
-    border: 2px solid #c4bfb9;
-    background: transparent;
-    backdrop-filter: blur(30px);
-    box-shadow: 0 0 10px rgb(146, 146, 146);
   }
   .profe-contenido{
     display: flex;
@@ -51,7 +47,7 @@
   }
   
   .profe-nombre {
-    color: #fff;
+    color: #5761b2;
     font-size: 34px;
     margin: 0;
     text-align: center;
@@ -60,7 +56,7 @@
   }
   
   .profe-resumen {
-    color: #bbb;
+    color: #5761b2;
     font-size: 16px;
     
   }
@@ -69,8 +65,6 @@
     flex: 1;
     display: flex;
     justify-content: center;
-    border: 4px solid #fff;
-    border-radius: 10px;
     overflow: hidden;
   }
   

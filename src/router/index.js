@@ -3,7 +3,7 @@ import SignUp from '../views/SignUp.vue';
 import Home from '../views/Home.vue';
 import ListaLibros from '../views/ListaLibros.vue';
 import ListaProfesTaller from '../views/ListaProfesTaller.vue';
-import OlvidoContrasenia from '../views/OlvidoContrasenia.vue';
+import ListaProfes from '../views/ListaProfes.vue';
 
 import AvisoLegal from '../views-footer/AvisoLegal.vue';
 import Terminos from '../views-footer/Terminos.vue';
@@ -36,9 +36,9 @@ const routes = [
     component: SignUp
   },
   {
-    path: '/restaurar-pass',
-    name: 'OlvidoContrasenia',
-    component: OlvidoContrasenia
+    path: '/profes',
+    name: 'ListaProfes',
+    component: ListaProfes
   },
   {
     path: '/aviso-legal',
