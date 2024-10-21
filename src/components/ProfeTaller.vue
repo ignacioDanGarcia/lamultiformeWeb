@@ -39,7 +39,7 @@
   .profe-contenido{
     display: flex;
     align-items: center;
-    margin: 40px 160px;
+    margin: 40px 20px;
     gap: 50px;
   }
   .profe-contenido.reverse {
@@ -79,23 +79,37 @@
     height: auto;
     object-fit: cover;
   }
-  @media (max-width: 768px) {
-    .profe-item {
-        flex-direction: column; /* Cambia a disposición en columna */
-        margin: 20px; /* Reduce los márgenes para pantallas pequeñas */
-        align-items: center; /* Centra los elementos */
+  @media (max-width: 1000px) {
+    .profe-contenido {
+        flex-direction: column; 
+        margin: 20px;
+        align-items: center;
     }
 
-    .profe-item.reverse {
-        flex-direction: column; /* Mantiene la misma disposición en columna para la versión invertida */
+    .profe-contenido.reverse {
+        flex-direction: column;
     }
 
     .profe-texto {
-        text-align: center; /* Centra el texto para una mejor visualización en pantallas pequeñas */
+        text-align: center;
     }
 
     .profe-imagen {
-        margin-top: 10px; /* Añade espacio entre el texto y la imagen */
+        margin-top: 10px;
+    }
+  }
+  @media (max-width: 890px) {
+    .profe-item {
+        margin: 40px 70px;
+        padding: 30px 40px;
+        
+    }
+  }
+  @media (max-width: 450px) {
+    .profe-item {
+        margin: 20px 25px;
+        padding: 20px 10px;
+        
     }
   }
   </style>
