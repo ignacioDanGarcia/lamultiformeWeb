@@ -85,6 +85,10 @@ export default {
 .clase-list {
   margin: 20px 0;
 }
+.profe-list {
+  margin: 10px 10px;
+  padding: 10px 10px;
+}
 * {
   background: none; 
 }
@@ -92,16 +96,6 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center; 
-    margin: 40px 200px;
     border-radius: 10px;
-    padding: 30px 40px;
-  }
-  .profe-nombre {
-    color: #5761b2;
-    font-size: 34px;
-    margin: 0;
-    text-align: center;
-    border-bottom: 2px solid #ffa44e;
-    padding-bottom: 5px;
   }
 </style>

@@ -80,6 +80,7 @@
     width: 100%;
     height:20rem;
     background-color: #f0f0f0;
+    border-radius: 8px;
   }
   .clase-imagen img {
     width: 100%;
@@ -103,11 +104,23 @@
       max-width: 100%;
       text-align: center;
     }
-
+    .clase-imagen {
+      height:10rem;
+    }
     .clase-grid-imagen {
-      max-width: 100%;
-      grid-template-columns: 1fr;
+      grid-template-columns: repeat(2, 1fr);
       margin-top: 10px;
+    }
+  }
+  @media (max-width: 480px) {
+    .clase-grid-imagen {
+      grid-template-columns: repeat(2, 1fr);
+      margin-top: 10px;
+      margin: 10px 0;
+    }
+    .clase-imagen {
+      width: 120%;
+      height:9rem;
     }
   }
   </style>
