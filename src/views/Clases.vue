@@ -2,16 +2,6 @@
   <div>
     <Navbar />
     <br><br><br><br><br><br>
-    <div class="profe-list">
-        <NuestrasProfes
-          v-for="(profe, index) in profes"
-          :key="index"
-          :nombre="profe.nombre"
-          :resumen="profe.resumen"
-          :imagen="profe.imagen"
-          :reverseOrder="index % 2 !== 0"
-        />
-      </div>
     <div class="clase-list">
       <ClaseExplicacion
         v-for="(clase, index) in clases"
@@ -22,6 +12,16 @@
         :reverseOrder="index % 2 !== 0"
       />
     </div>
+    <div class="profe-list">
+        <NuestrasProfes
+          v-for="(profe, index) in profes"
+          :key="index"
+          :nombre="profe.nombre"
+          :resumen="profe.resumen"
+          :imagen="profe.imagen"
+          :reverseOrder="index % 2 !== 0"
+        />
+      </div>
     <Footer />
   </div>
 </template>

@@ -27,16 +27,16 @@
   </script>
   
   <style scoped>
-  .fondo-clases{
+  /*.fondo-clases{
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
                 url('../assets/simbolo_om_violeta.png') no-repeat center center fixed;
     background-size: cover; 
-  }
+  }*/
   .clase-item {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 40px auto;
+    margin: auto;
     max-width: 1200px;
   }
   
@@ -50,13 +50,14 @@
   }
   
   .clase-titulo {
-    color: #fff;
+    color: #5761b2;
+    border-bottom: 2px solid #ffa44e; 
     font-size: 34px;
     margin: 0;
   }
   
   .clase-resumen {
-    color: #bbb;
+    color: #5761b2;
     font-size: 16px;
   }
   
