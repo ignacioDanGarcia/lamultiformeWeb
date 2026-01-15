@@ -19,7 +19,7 @@ export default {
 </script>
 
 <template>
-  <div>
+  <div class="home-container">
     <Navbar  />
     <router-view  />
     <div class="foto-fondo">
@@ -31,9 +31,11 @@ export default {
       
     </div>
     
-    <Agenda />
-    <Clases  />
-    <Consultas  />
+    <div class="home-content">
+      <Agenda />
+      <Clases />
+      <Consultas />
+    </div>
     <Footer />
   </div>
 </template>
@@ -47,10 +49,21 @@ export default {
 .foto-fondo img{
   margin: 20px 0;
   width: 100%;
-  height: 1000px;
+  height: 800px;
   min-height: 300px;
   object-fit: cover;
   object-position: center;
+}
+.home-content {
+  max-width: 1200px;    
+  margin: 0 auto;       
+  padding: 0 24px;      
+}
+
+.titulo {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
 }
 
 .titulo h1{
