@@ -22,6 +22,19 @@
           :reverseOrder="index % 2 !== 0"
         />
       </div>
+      <div class="taller-literario">
+      <div class="book-list">
+        <ProfeTaller
+          v-for="(profe, index) in profesTaller"
+          :key="index"
+          :nombre="profe.nombre"
+          :resumen="profe.resumen"
+          :imagen="profe.imagen"
+          :reverseOrder="index % 2 !== 0"
+        />
+      </div>
+      <Alumnos />
+    </div>
     <Footer />
   </div>
 </template>
@@ -30,6 +43,8 @@
 import Navbar from '../components/Navbar.vue';
 import ClaseExplicacion from '../components/ClaseExplicacion.vue';
 import NuestrasProfes from '../components/NuestrasProfes.vue';
+import ProfeTaller from '../components/ProfeTaller.vue';
+import Alumnos from '../components/Alumnos.vue';
 import Footer from '../components/Footer.vue';
 
 export default {
@@ -38,6 +53,8 @@ export default {
     ClaseExplicacion,
     Footer,
     NuestrasProfes,
+    Alumnos,
+    ProfeTaller,
   },
   data() {
     return {
@@ -74,14 +91,28 @@ export default {
           resumen: 'El Hatha Yoga Dinámico es una versión más vigorosa del Hatha Yoga tradicional, donde se realiza una secuencia fluida de posturas que se conectan con la respiración. Este estilo es perfecto para aquellos que desean una práctica más activa, que aumente la fuerza muscular, la resistencia y el equilibrio. Las clases son energizantes y están diseñadas para trabajar todo el cuerpo, mejorando la coordinación y el enfoque mental.',
           imagen: ['/1.png','/2.png'],
         },
-        // Agrega más clases aca
       ],
+      profesTaller: [
+          {
+            nombre: 'Fabio Martorelli',
+            resumen: 'Este es Feibius bla bla bla <br> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+            imagen: '/fabio.png'
+          },
+          {
+            nombre: 'Paola Leguizamón',
+            resumen: 'Esta es paola bla bla bla  <br> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+            imagen: '/pao.png'
+          },
+        ]
     };
   }
 }
 </script>
 
 <style scoped>
+* {
+  background: none; 
+}
 .clase-list {
   margin: 20px 0;
 }
@@ -89,13 +120,13 @@ export default {
   margin: 10px 10px;
   padding: 10px 10px;
 }
-* {
-  background: none; 
-}
 .profe-item {
     display: flex;
     flex-direction: column;
     align-items: center; 
     border-radius: 10px;
-  }
+}
+.book-list {
+  margin: 20px 0;
+}
 </style>
