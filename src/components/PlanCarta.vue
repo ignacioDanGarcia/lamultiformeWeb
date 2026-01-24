@@ -89,12 +89,12 @@ export default {
     color: #ffa44e;
 }
 @media (max-width: 858px){
-    .plans__content {
-        opacity: 1;
-        background-color: transparent;
-    }
     .plans__content:hover {
         background-color: rgba(75, 87, 141, 0.6);
     }
+    .plan-card {
+    width: 100%;
+    background-color: #f0f0f0;
+}
 }
 </style>

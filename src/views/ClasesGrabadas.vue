@@ -14,12 +14,14 @@
         />
       </div>
     </div>
+    <FaqSuscripciones/>
     <Footer />
   </div>
 </template>
 
 <script>
 import PlanCarta from '../components/PlanCarta.vue';
+import FaqSuscripciones from '../components/FaqSuscripciones.vue';
 import Navbar from '../components/Navbar.vue';
 import Footer from '../components/Footer.vue';
 import PilatesImg from '../assets/paquete-pilates.png';
@@ -28,7 +30,7 @@ import FlexImg from '../assets/paquete-flexibilidad.png';
 
 export default {
   name: 'Planes',
-  components: { PlanCarta,Navbar,Footer },
+  components: { PlanCarta,FaqSuscripciones,Navbar,Footer },
   data() {
     return {
       planes: [
@@ -76,6 +78,12 @@ export default {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 30px;
+}
+@media (max-width: 640px){
+  .grid {
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 30px;
+}
 }
 </style>
 

@@ -111,4 +111,38 @@ export default {
   font-size: 14px;
   color: #555;
 }
+@media (max-width: 768px) {
+  .image img {
+    width: 100%;
+  }
+  .detalle-container {
+    gap: 30px;
+    margin-top: 50px;
+  }
+  .info h1 {
+    font-size: 20px;
+  }
+
+  .info h3 {
+    font-size: 15px;
+  }
+
+  .info p {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .detalle-container {
+    padding: 0 16px;
+  }
+
+  .info h1 {
+    font-size: 18px;
+  }
+
+  .nota {
+    font-size: 10px;
+  }
+}
 </style>

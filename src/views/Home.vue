@@ -160,6 +160,13 @@ export default {
     .titulo h2{
     font-size: 1em;
     }
+.boton-contacto-text{
+    font-size: 15px;
+    top: 55%;
+    left: 20%;
+    width: 200px;
+    height: 50px;
+}
 }
 .profe-list {
   margin: 20px auto;
