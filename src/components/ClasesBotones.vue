@@ -13,15 +13,15 @@
                 </div>
             </div>
             <div class="classes__image">
-                <img src="../assets/pilatesrestaurativo.jpeg" alt="classes" />
+                <img src="../assets/yogadinamicoo.jpeg" alt="classes" />
                 <div class="classes__content">
-                <button class="btn classes__btn">Pilates restaurativo</button>
+                <button class="btn classes__btn">Hatha Yoga Dinámico</button>
                 </div>
             </div>
             <div class="classes__image">
-                <img src="../assets/yogadinamico.jpeg" alt="classes" />
+                <img src="../assets/yogaavanzado.jpeg" alt="classes" />
                 <div class="classes__content">
-                <button class="btn classes__btn">Hatha Dinámico Yoga</button>
+                <button class="btn classes__btn">Yoga Avanzado</button>
                 </div>
             </div>
             <div class="classes__image">
@@ -183,6 +183,15 @@ body {
 .classes__btn:hover {
     background-color: #fff;
     color: #ffa44e;
+}
+@media (max-width: 858px){
+    .classes__content {
+        opacity: 1;
+        background-color: transparent;
+    }
+    .classes__content:hover {
+        background-color: rgba(75, 87, 141, 0.6);
+    }
 }
 @media (max-width: 768px) {
     .classes__grid {

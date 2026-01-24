@@ -25,6 +25,7 @@
   
   <style scoped>
   .profe-item {
+  max-width: 1200px;  
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -32,10 +33,10 @@
   width: 90%;
   max-width: 1400px;
   margin: 0 auto;
-}
+  }
 
 .profe-nombre {
-  color: #5761b2;
+  color: #fff;
   font-size: 34px;
   margin: 0 0 20px 0;
   text-align: center;
@@ -61,7 +62,7 @@
 .profe-texto {
   flex: 1;
   padding: 10px;
-  color: #5761b2;
+  color: #fff;
   font-size: 18px;
 }
 

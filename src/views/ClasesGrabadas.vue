@@ -4,7 +4,7 @@
     <br><br><br><br><br><br>
 
     <div class="planes-container">
-      <h2>Planes de Suscripción</h2>
+      <div class="titulo-planes"><h1>Planes de Suscripción</h1></div>
 
       <div class="grid">
         <PlanCarta
@@ -54,6 +54,18 @@ export default {
 </script>
 
 <style scoped>
+.titulo-planes h1{
+  max-width: 500px;
+  color: #5761b2;
+  font-size: 40px;
+  margin: 20px auto;
+  margin-bottom: 40px;
+  padding: 0 24px; 
+  text-align: center;
+  align-items: center;
+  border-bottom: 2px solid #ffa44e; 
+  padding-bottom: 5px;
+}
 .planes-container {
   max-width: 1200px;
   margin: 120px auto;

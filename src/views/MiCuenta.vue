@@ -39,14 +39,14 @@
 <script>
 import Navbar from '../components/Navbar.vue';
 import Footer from '../components/Footer.vue';
-import Clases from '../components/Clases.vue';
+import ClasesBotones from '../components/ClasesBotones.vue';
 import Suscripciones from '../components/mi-cuenta/Suscripciones.vue';
 import TurnosPresenciales from '../components/mi-cuenta/TurnosPresenciales.vue';
 export default {
   components: {
     Navbar,
     Footer,
-    Clases,
+    ClasesBotones,
     TurnosPresenciales,
     Suscripciones,
   },
