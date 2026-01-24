@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="plan-card">
+    <div class="plan-card" @click="goToDetail">
                   <img :src="plan.image" :alt="plan.title" />
                   <div class="plans__content">
                   <button class="btn classes__btn">Ver más</button>
@@ -46,12 +46,12 @@ export default {
 .plan-card img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* La imagen se adapta al tamaño del contenedor sin deformarse */
-    transition: transform 0.3s ease; /* Transición suave para el efecto de zoom */
+    object-fit: cover;
+    transition: transform 0.3s ease;
     transform: scale(1);
 }
 .plan-card:hover img {
-    transform: scale(1.1); /* Reducir el tamaño de la imagen al pasar el mouse */
+    transform: scale(1.1);
 }
 
 .plans__content {

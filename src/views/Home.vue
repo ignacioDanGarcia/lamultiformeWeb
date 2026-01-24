@@ -5,6 +5,7 @@ import Footer from '../components/Footer.vue';
 import Consultas from '../components/Consultas.vue';
 import ClasesBotones from '../components/ClasesBotones.vue';
 import NuestrasProfes from '../components/NuestrasProfes.vue';
+import QuienesSomos from '../components/QuienesSomos.vue';
 export default {
   name: 'Home',
   components: {
@@ -14,6 +15,7 @@ export default {
     Consultas,
     ClasesBotones,
     NuestrasProfes,
+    QuienesSomos
   },
   data() {
     return {
@@ -42,6 +44,9 @@ export default {
             <button><a class="boton-contacto-text" href="https://wa.me/5491126825124">Agendá tu primera clase!</a></button>
             </div>
       </div>
+    </div>
+    <div class="quienessomos-content">
+      <QuienesSomos/>
     </div>
     <div class="home-content">
       <ClasesBotones />
@@ -157,11 +162,14 @@ export default {
     }
 }
 .profe-list {
-  
-  margin: 10px 10px;
-  padding: 10px 10px;
+  margin: 20px auto;
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
                 url('../assets/simbolo_om_naranja.png') no-repeat center center fixed;
    background-size: cover; 
+}
+.quienessomos-content{
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                url('../assets/simbolo_om_violeta.png') no-repeat center center fixed;
+   background-size: cover;
 }
 </style>

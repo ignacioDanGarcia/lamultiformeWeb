@@ -8,24 +8,24 @@
         </div>
 
         <div class="info">
-        <h1>{{ plan.title }}</h1>
+          <h1>{{ plan.title }}</h1>
 
-        <p>
-            Con este plan vas a tener acceso a los cursos offline y
-            más de 30 clases grabadas.
-        </p>
+          <p>
+              Con este plan vas a tener acceso a los cursos offline y
+              más de 30 clases grabadas.
+          </p>
 
-        <p><strong>Acceso:</strong> 6 meses</p>
-        <p><strong>Precio:</strong> $38600</p>
+          <p><strong>Acceso:</strong> 6 meses</p>
+          <p><strong>Precio:</strong> $38600</p>
 
-        <h3>Datos bancarios</h3>
-        <p>Banco XXX</p>
-        <p>CBU: XXX</p>
+          <h3>Datos bancarios</h3>
+          <p>Banco XXX</p>
+          <p>CBU: XXX</p>
 
-        <p class="nota">
-            Una vez realizada la transferencia, enviar el comprobante
-            por WhatsApp para habilitar la suscripción.
-        </p>
+          <p class="nota">
+              Una vez realizada la transferencia, enviar el comprobante
+              por WhatsApp para habilitar la suscripción.
+          </p>
         </div>
     </div>
     <Footer />
@@ -82,7 +82,30 @@ export default {
 .image img {
   width: 100%;
 }
-
+.info h1{
+  max-width: 500px;
+  color: #5761b2;
+  font-size: 30px;
+  margin: 20px auto;
+   
+  padding: 0 24px; 
+  text-align: center;
+  align-items: center;
+  border-bottom: 2px solid #ffa44e; 
+  padding-bottom: 5px;
+}
+.info h3{
+  max-width: 500px;
+  color: #5761b2;
+  font-size: 20px;
+  margin: 20px auto;
+   
+  padding: 0 24px; 
+  text-align: center;
+  align-items: center;
+  border-bottom: 2px solid #ffa44e; 
+  padding-bottom: 5px;
+}
 .nota {
   margin-top: 20px;
   font-size: 14px;
