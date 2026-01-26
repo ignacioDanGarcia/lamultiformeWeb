@@ -1,13 +1,8 @@
 <template>
     <div class="profe-item">
-        <h2 class="profe-nombre">{{ nombre }}</h2>
-        <div :class="['profe-contenido', { 'reverse': reverseOrder }]">
-            <div class="profe-texto">
-                <p class="profe-resumen" v-html="resumen"></p>
-            </div>
-            <div class="profe-imagen">
-                <img :src="imagen" alt="profe Image" />
-            </div>
+        <h2 class="profe-nombre">¿Quiénes somos?</h2>
+        <div class="profe-contenido">
+            <p class="profe-texto">Somos una asociación civil sin fines de lucro con el objetivo de traer bienestar y salud a las personas que concurren a nuestro espacio. Dictamos clases de taller literario, yoga, pilates y meditación. En cada clase buscamos avanzar con una planificación especialmente pensada para que estemos en armonía con nuestro cuerpo y mente. </p>
         </div>
     </div>
   </template>
@@ -16,7 +11,7 @@
   export default {
     props: {
       nombre: String,
-      resumen: String,
+      texto: String,
       imagen: String,
       reverseOrder: Boolean
     }
@@ -25,7 +20,6 @@
   
   <style scoped>
   .profe-item {
-  max-width: 1200px;  
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -49,7 +43,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
+  max-width: 1000px;  
   gap: 50px;
 }
 
@@ -64,21 +58,6 @@
   padding: 10px;
   color: #fff;
   font-size: 18px;
-}
-
-.profe-imagen {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  max-width: 100%;
-}
-
-.profe-imagen img {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  border-radius: 8px;
 }
 
 @media (max-width: 1500px) {

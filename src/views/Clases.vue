@@ -1,7 +1,8 @@
 <template>
-  <div>
+  <div class="clase-container">
     <Navbar />
     <br><br><br><br><br><br>
+  <div class="titulo-clases"><h1 >Nuestras Clases</h1></div>
     <div class="clase-list">
       <ClaseExplicacion
         v-for="(clase, index) in clases"
@@ -12,9 +13,11 @@
         :reverseOrder="index % 2 !== 0"
       />
     </div>
-    <div class="profe-list">
-        <NuestrasProfes
-          v-for="(profe, index) in profes"
+    <div class="taller-literario">
+      <h1>Taller Literario</h1>
+      <div class="book-list">
+        <ProfeTaller
+          v-for="(profe, index) in profesTaller"
           :key="index"
           :nombre="profe.nombre"
           :resumen="profe.resumen"
@@ -22,6 +25,8 @@
           :reverseOrder="index % 2 !== 0"
         />
       </div>
+      <Alumnos />
+    </div>
     <Footer />
   </div>
 </template>
@@ -30,6 +35,8 @@
 import Navbar from '../components/Navbar.vue';
 import ClaseExplicacion from '../components/ClaseExplicacion.vue';
 import NuestrasProfes from '../components/NuestrasProfes.vue';
+import ProfeTaller from '../components/ProfeTaller.vue';
+import Alumnos from '../components/Alumnos.vue';
 import Footer from '../components/Footer.vue';
 
 export default {
@@ -38,6 +45,8 @@ export default {
     ClaseExplicacion,
     Footer,
     NuestrasProfes,
+    Alumnos,
+    ProfeTaller,
   },
   data() {
     return {
@@ -55,11 +64,6 @@ export default {
           imagen: ['/pilates1.jpeg','/pilates2.jpg','/pilates3.jpeg','/pilates4.jpg'],
         },
         {
-          titulo: 'Pilates restaurativo',
-          resumen: 'El Pilates Restaurativo se enfoca en movimientos suaves y estiramientos que ayudan a relajar el cuerpo y la mente, promoviendo la recuperación física y la movilidad. Estas clases están pensadas para personas que se están recuperando de lesiones, tienen movilidad limitada o simplemente desean reducir la tensión acumulada en sus músculos. El objetivo es restaurar el bienestar físico mediante ejercicios que suavemente fortalecen y estiran los músculos sin causar estrés.',
-          imagen: ['/1.png','/2.png'],
-        },
-        {
           titulo: 'Hatha Yoga Restaurativo',
           resumen: 'El Hatha Yoga Restaurativo se enfoca en la relajación profunda y el estiramiento suave. Utiliza posturas mantenidas durante más tiempo para permitir que el cuerpo se relaje por completo, acompañado de una respiración controlada para calmar la mente. Esta práctica es ideal para reducir el estrés, aumentar la flexibilidad y promover una sensación de calma y bienestar. Es una excelente opción para quienes buscan una práctica que favorezca la recuperación física y la paz interior.',
           imagen: ['/1.png','/2.png'],
@@ -74,14 +78,45 @@ export default {
           resumen: 'El Hatha Yoga Dinámico es una versión más vigorosa del Hatha Yoga tradicional, donde se realiza una secuencia fluida de posturas que se conectan con la respiración. Este estilo es perfecto para aquellos que desean una práctica más activa, que aumente la fuerza muscular, la resistencia y el equilibrio. Las clases son energizantes y están diseñadas para trabajar todo el cuerpo, mejorando la coordinación y el enfoque mental.',
           imagen: ['/1.png','/2.png'],
         },
-        // Agrega más clases aca
+        {
+          titulo: 'Yoga Avanzado',
+          resumen: 'El yoga avanzado se refiere a las posturas y técnicas que requieren un mayor nivel de habilidad física y mental. Estas prácticas van más allá de las posturas básicas y se centran en desafiar los límites del cuerpo y la mente. Las posturas avanzadas de yoga pueden incluir inversiones, flexiones hacia atrás, equilibrios en los brazos y torsiones, entre otras. Al practicar yoga avanzado, los estudiantes pueden experimentar un mayor nivel de fuerza, flexibilidad y equilibrio. También pueden desarrollar una mayor conciencia corporal y una mente más tranquila a través de la concentración y el enfoque requeridos en estas posturas desafiantes.',
+          imagen: ['/1.png','/2.png'],
+        },
       ],
+      profesTaller: [
+          {
+            nombre: 'Fabio Martorelli',
+            resumen: 'Este es Feibius bla bla bla <br> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+            imagen: '/fabio.png'
+          },
+          {
+            nombre: 'Paola Leguizamón',
+            resumen: 'Esta es paola bla bla bla  <br> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+            imagen: '/pao.png'
+          },
+        ]
     };
   }
 }
 </script>
 
 <style scoped>
+* {
+  background: none; 
+}
+.titulo-clases h1{
+  max-width: 500px;
+  color: #5761b2;
+  font-size: 40px;
+  margin: 20px auto;
+   
+  padding: 0 24px; 
+  text-align: center;
+  align-items: center;
+  border-bottom: 2px solid #ffa44e; 
+  padding-bottom: 5px;
+}
 .clase-list {
   margin: 20px 0;
 }
@@ -89,13 +124,28 @@ export default {
   margin: 10px 10px;
   padding: 10px 10px;
 }
-* {
-  background: none; 
-}
 .profe-item {
     display: flex;
     flex-direction: column;
     align-items: center; 
     border-radius: 10px;
-  }
+}
+.book-list {
+  margin: 20px 0;
+}
+.taller-literario {
+  margin: 10px 10px;
+  padding: 10px 10px;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                url('../assets/simbolo_om_naranja.png') no-repeat center center fixed;
+   background-size: cover; 
+}
+.taller-literario h1{
+  color: #fff;
+  font-size: 34px;
+  margin: 0 0 20px 0;
+  text-align: center;
+  border-bottom: 2px solid #ffa44e; 
+  padding-bottom: 5px;
+}
 </style>

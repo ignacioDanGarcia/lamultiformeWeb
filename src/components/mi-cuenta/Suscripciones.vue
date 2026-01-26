@@ -1,61 +1,312 @@
 <template>
   <div class="suscripciones">
+
     <h2>Mis suscripciones On Demand</h2>
 
     <div v-if="!tieneSuscripciones" class="empty-state">
-      <p>Aún no tenés suscripciones activas. Escríbenos por Whatsapp para coordinar la compra de una suscripción y podrás ver tus clases pre-grabadas aquí.</p>
+      <p>
+        Aún no tenés suscripciones activas.
+        Escribinos por WhatsApp para coordinar la compra y acceder a tus clases.
+      </p>
     </div>
 
-    <div v-else class="lista-suscripciones">
+    <div v-else-if="!suscripcionActiva" class="planes">
       <div
-        v-for="suscripcion in suscripciones"
-        :key="suscripcion.id"
-        class="suscripcion"
+        v-for="plan in planes"
+        :key="plan.paquete"
+        class="plan-card"
+        @click="seleccionarPlan(plan)"
       >
-        <h3>{{ suscripcion.titulo }}</h3>
-
-        <iframe
-          v-if="suscripcion.vimeoUrl"
-          :src="suscripcion.vimeoUrl"
-          width="100%"
-          height="360"
-          frameborder="0"
-          allow="autoplay; fullscreen"
-          allowfullscreen
-        ></iframe>
+        <h3>{{ plan.titulo }}</h3>
+        <p>Vence el {{ formatearFecha(plan.fecha_fin.toDate()) }}</p>
       </div>
     </div>
+
+    <div v-else-if="suscripcionActiva && !claseActiva" class="clases">
+      <button class="volver" @click="volverAPlanes">
+        ← Volver a planes
+      </button>
+
+      <h3>{{ suscripcionActiva.titulo }}</h3>
+
+      <ul class="lista-clases">
+        <li
+          v-for="clase in suscripcionActiva.clases"
+          :key="clase.id"
+          @click="seleccionarClase(clase)"
+        >
+          ▶ {{ clase.titulo }}
+        </li>
+      </ul>
+    </div>
+
+    <div v-else class="video">
+      <button class="volver" @click="claseActiva = null">
+        ← Volver a clases
+      </button>
+
+      <h4>{{ claseActiva.titulo }}</h4>
+
+      <iframe
+        v-if="vimeoEmbedUrl"
+        :src="vimeoEmbedUrl"
+        width="100%"
+        height="360"
+        frameborder="0"
+        allow="autoplay; fullscreen"
+        allowfullscreen
+      ></iframe>
+    </div>
+
   </div>
 </template>
 
-<script>
-export default {
-  name: 'Suscripciones',
-  data() {
-    return {
-      suscripciones: []
-    }
-  },
-  computed: {
-    tieneSuscripciones() {
-      return this.suscripciones.length > 0
-    }
-  }
+
+
+<script setup>
+import { ref, computed, onMounted } from 'vue'
+import { getAuth } from 'firebase/auth'
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  collection,
+  getDocs,
+  query,
+  where
+} from 'firebase/firestore'
+
+const db = getFirestore()
+const auth = getAuth()
+
+const planes = ref([])
+const suscripcionActiva = ref(null)
+const claseActiva = ref(null)
+
+const tieneSuscripciones = computed(() => planes.value.length > 0)
+
+const hoy = () => {
+  const d = new Date()
+  d.setHours(0, 0, 0, 0)
+  return d
 }
+
+const estaActiva = (inicio, fin) => {
+  const fInicio = inicio.toDate()
+  const fFin = fin.toDate()
+
+  fFin.setHours(23, 59, 59, 999)
+
+  return hoy() >= fInicio && hoy() <= fFin
+}
+
+const formatearFecha = (fecha) => {
+  return new Date(fecha).toLocaleDateString()
+}
+
+const seleccionarPlan = (plan) => {
+  suscripcionActiva.value = plan
+  claseActiva.value = null
+}
+
+const seleccionarClase = (clase) => {
+  claseActiva.value = clase
+}
+
+const volverAPlanes = () => {
+  suscripcionActiva.value = null
+  claseActiva.value = null
+}
+
+const vimeoEmbedUrl = computed(() => {
+  if (!claseActiva.value) return null
+  return `https://player.vimeo.com/video/${claseActiva.value.vimeoId}`
+})
+
+const cargarSuscripciones = async () => {
+  const user = auth.currentUser
+  if (!user) return
+  
+  const userSnap = await getDoc(doc(db, 'usuarios', user.uid))
+  if (!userSnap.exists()) return
+  
+  const suscripcionesUsuario = userSnap.data().suscripciones || []
+
+  const suscripcionesActivas = suscripcionesUsuario.filter(s =>
+    estaActiva(s.fecha_inicio, s.fecha_fin)
+  )
+  
+  if (suscripcionesActivas.length === 0) return
+  
+  const paquetes = suscripcionesActivas.map(s => s.paquete)
+  
+  const videosSnap = await getDocs(
+    query(collection(db, 'videos'), where('paquete', 'in', paquetes))
+  )
+  
+  const mapaPlanes = {}
+
+  videosSnap.forEach(docu => {
+    const video = { id: docu.id, ...docu.data() }
+
+    const datosPaquete = suscripcionesActivas.find(
+      s => s.paquete === video.paquete
+    )
+
+    if (!mapaPlanes[video.paquete]) {
+      mapaPlanes[video.paquete] = {
+        paquete: video.paquete,
+        titulo: `Plan ${video.paquete}`,
+        fecha_inicio: datosPaquete.fecha_inicio,
+        fecha_fin: datosPaquete.fecha_fin,
+        clases: []
+      }
+    }
+
+    mapaPlanes[video.paquete].clases.push(video)
+  })
+  
+  planes.value = Object.values(mapaPlanes)
+}
+
+onMounted(cargarSuscripciones)
 </script>
+
 
 <style scoped>
 .suscripciones {
   padding: 16px;
 }
 
+
 .empty-state {
   margin-top: 20px;
-  font-size: 16px;
   color: #666;
 }
 
-.suscripcion {
-  margin-top: 24px;
+
+.planes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
 }
+
+.plan-card {
+  border: 1px solid #000;
+  border-radius: 10px;
+  padding: 16px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  background-color: #ffa44e;
+}
+
+.plan-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.plan-card img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+
+.lista-clases {
+  list-style: none;
+  padding: 0;
+}
+
+.lista-clases li {
+  padding: 12px;
+  margin-bottom: 8px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.lista-clases li:hover {
+  background: #f5f5f5;
+}
+
+.video iframe {
+  margin-top: 16px;
+}
+
+.volver {
+  background: none;
+  border: none;
+  color: #5761b2;
+  cursor: pointer;
+  margin-bottom: 12px;
+  font-weight: bold;
+}
+@media (max-width: 800px) {
+  .suscripciones {
+    padding: 1rem;
+  }
+
+  h2 {
+    font-size: 0.9rem;
+    text-align: center;
+  }
+
+  .planes {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .plan-card {
+    padding: 1rem;
+  }
+
+  .plan-card h3 {
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .plan-card p {
+    font-size: 0.65rem;
+    opacity: 0.85;
+  }
+
+  .clases h3 {
+    font-size: 0.8rem;
+    text-align: center;
+  }
+
+  .lista-clases {
+    padding: 0;
+  }
+
+  .lista-clases li {
+    padding: 0.8rem;
+    font-size: 0.65rem;
+  }
+
+  .volver {
+    font-size: 0.65rem;
+    padding: 0.5rem 0.8rem;
+    margin-bottom: 1rem;
+  }
+
+  .video h4 {
+    font-size: 0.8rem;
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+
+  iframe {
+    height: 220px;
+    border-radius: 8px;
+  }
+
+  .empty-state p {
+    font-size: 0.95rem;
+    text-align: center;
+  }
+}
+
 </style>

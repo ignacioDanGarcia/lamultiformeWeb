@@ -12,9 +12,9 @@
                 <input type="checkbox" id="check">
 
                 <ul class="menu">
-                <li><router-link to="/">La multi</router-link></li>
+                <li><router-link to="/">Inicio</router-link></li>
                 <li><router-link to="/clases">Clases</router-link></li>
-                <li><router-link to="/taller-literario">Taller Literario</router-link></li>
+                <li><router-link to="/clases-grabadas">Clases grabadas</router-link></li>
                 <li><router-link to="/lista-libros">Libros</router-link></li>
                 <li v-if="isAuthenticated" class="mi-cuenta">
                     <router-link to="/mi-cuenta">
@@ -70,7 +70,7 @@ export default {
 
 <style scoped>
 nav {
-    position: fixed; /* clave para que no desaparezca */
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -80,7 +80,7 @@ nav {
 }
 
 .nav-container {
-    max-width: 1200px; /* ajustable */
+    max-width: 1200px;
     margin: 0 auto;
     padding: 30px 24px;
     display: flex;

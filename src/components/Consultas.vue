@@ -4,7 +4,7 @@
       <div class="title-container">
         <div class="title">Querés consultarnos algo?</div>
             <div class="subTitle">
-                Nos importa saber lo que no se entiende y conocer tu situación. ¡Escribinos! Estamos aquí para ayudarte a aclarar tus dudas. Hace click abajo para poder escribirnos por whatsapp.
+                Nos importa saber lo que no se entiende y conocer tu situación. ¡Escribinos! Estamos aquí para ayudarte a aclarar tus dudas. Hacé click abajo para poder escribirnos por whatsapp.
             </div>
             <div class="boton-contacto">
             <button><a class="boton-contacto-text" href="https://wa.me/5491126825124">  Contactanos acá!</a></button>

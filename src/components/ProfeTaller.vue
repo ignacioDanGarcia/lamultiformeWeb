@@ -25,10 +25,11 @@
   
   <style scoped>
   .profe-item {
+    max-width: 1200px;
     display: flex;
     flex-direction: column;
     align-items: center; 
-    margin: 40px 200px;
+    margin: 40px 350px;
     border-radius: 10px;
     padding: 30px 40px;
     border: 2px solid #c4bfb9;

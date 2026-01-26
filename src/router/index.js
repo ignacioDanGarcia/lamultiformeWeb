@@ -6,7 +6,8 @@ import SignUp from '../views/SignUp.vue';
 import ListaLibros from '../views/ListaLibros.vue';
 import Clases from '../views/Clases.vue';
 import MiCuenta from '../views/MiCuenta.vue';
-import ListaProfesTaller from '../views/ListaProfesTaller.vue';
+import ClasesGrabadas from '../views/ClasesGrabadas.vue';
+import ClaseDetalle from '../views/ClaseDetalle.vue';
 
 import AvisoLegal from '../views-footer/AvisoLegal.vue';
 import Terminos from '../views-footer/Terminos.vue';
@@ -19,7 +20,7 @@ const routes = [
   {
     path: '/mi-cuenta',
     name: 'MiCuenta',
-    component: () => import('../views/MiCuenta.vue'),
+    component: MiCuenta,
     meta: { requiresAuth: true },
   },
 
@@ -28,7 +29,12 @@ const routes = [
 
   { path: '/lista-libros', name: 'ListaLibros', component: ListaLibros },
   { path: '/clases', name: 'Clases', component: Clases },
-  { path: '/taller-literario', name: 'ListaProfesTaller', component: ListaProfesTaller },
+  { path: '/clases-grabadas', name: 'ClasesGrabadas', component: ClasesGrabadas },
+  {
+    path: '/clases-grabadas/:slug',
+    name: 'ClaseDetalle',
+    component: ClaseDetalle,
+  },
 
   { path: '/aviso-legal', component: AvisoLegal },
   { path: '/terminos-y-condiciones', component: Terminos },

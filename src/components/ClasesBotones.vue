@@ -9,37 +9,37 @@
             <div class="classes__image">
                 <img src="../assets/pilates.jpg" alt="classes" />
                 <div class="classes__content">
-                <button class="btn classes__btn">Pilates</button>
+                <button ><router-link to="/clases" class="btn classes__btn">Pilates</router-link></button>
                 </div>
             </div>
             <div class="classes__image">
-                <img src="../assets/pilatesrestaurativo.jpeg" alt="classes" />
+                <img src="../assets/yogadinamicoo.jpeg" alt="classes" />
                 <div class="classes__content">
-                <button class="btn classes__btn">Pilates restaurativo</button>
+                    <button ><router-link to="/clases" class="btn classes__btn">Hatha Yoga Dinámico</router-link></button>
                 </div>
             </div>
             <div class="classes__image">
-                <img src="../assets/yogadinamico.jpeg" alt="classes" />
+                <img src="../assets/yogaavanzado.jpeg" alt="classes" />
                 <div class="classes__content">
-                <button class="btn classes__btn">Hatha Dinámico Yoga</button>
+                    <button ><router-link to="/clases" class="btn classes__btn">Yoga Avanzado</router-link></button>
                 </div>
             </div>
             <div class="classes__image">
                 <img src="../assets/yogaintegral.jpeg" alt="classes" />
                 <div class="classes__content">
-                <button class="btn classes__btn">Yoga Integral</button>
+                    <button ><router-link to="/clases" class="btn classes__btn">Yoga Integral</router-link></button>
                 </div>
             </div>
             <div class="classes__image">
                 <img src="../assets/yogarestaurativo.jpeg" alt="classes" />
                 <div class="classes__content">
-                <button class="btn classes__btn">Hatha Yoga Restaurativo</button>
+                    <button ><router-link to="/clases" class="btn classes__btn">Hatha Yoga Restaurativo</router-link></button>
                 </div>
             </div>
             <div class="classes__image">
                 <img src="../assets/vermas.jpeg" alt="classes" />
                 <div class="classes__content">
-                <button class="btn classes__btn">Ver más</button>
+                    <button ><router-link to="/clases" class="btn classes__btn">Ver más</router-link></button>
                 </div>
             </div>
         </div>
@@ -67,7 +67,7 @@
     transition: background-color 0.3s;
 }
 .agenda-text:hover {
-  background-color: rgba(87, 97, 178, 0.8); /* Ajusta el canal alfa según tus preferencias */
+  background-color: rgba(87, 97, 178, 0.8);
 }
 .section__container {
   max-width: var(--max-width);
@@ -91,6 +91,7 @@
 }
 
 .btn {
+  text-decoration: none;
   padding: 1rem 1.5rem;
   outline: none;
   border: none;
@@ -142,12 +143,12 @@ body {
 .classes__image img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* La imagen se adapta al tamaño del contenedor sin deformarse */
-    transition: transform 0.3s ease; /* Transición suave para el efecto de zoom */
+    object-fit: cover;
+    transition: transform 0.3s ease;
     transform: scale(1.1);
 }
 .classes__image:hover img {
-    transform: scale(1); /* Reducir el tamaño de la imagen al pasar el mouse */
+    transform: scale(1);
 }
 
 .classes__content {
@@ -184,19 +185,30 @@ body {
     background-color: #fff;
     color: #ffa44e;
 }
+@media (max-width: 858px){
+    .classes__content {
+        opacity: 1;
+        background-color: transparent;
+    }
+    .classes__content:hover {
+        background-color: rgba(75, 87, 141, 0.6);
+    }
+    .section__header {
+  font-size: 1.3rem;
+}
+
+.section__subheader {
+  font-size: 0.5rem;
+}
+}
 @media (max-width: 768px) {
     .classes__grid {
-        grid-template-columns: repeat(2, 1fr); /* Dos columnas para pantallas menores a 768px */
+        grid-template-columns: repeat(2, 1fr);
     }
 }
-@media (max-width: 743px) {
-    .section__header {
-      font-size: 2rem;
-    }
-  }
   @media (max-width: 400px) {
     .section__header {
-      font-size: 1.3rem;
+      font-size: 1rem;
     }
   }
 </style>
