@@ -35,7 +35,6 @@ export default {
   },
   computed: {
     filteredDaysOfWeek() {
-      //aca filtra los dias de la semana para omitir el domingo (index 0)
       return this.daysOfWeek.filter((day, index) => index > 0);
     },
   },
@@ -48,10 +47,11 @@ export default {
         
         const eventsPromises = eventsSnapshot.docs.map(async (eventDoc) => {
           const data = eventDoc.data();
+          
           const tituloDocRef = doc(db, 'titulos', data.oid_titulo.id);
           const profeDocRef = doc(db, 'profes', data.oid_profe.id);
           
-          //usa Promise.all para esperar las dos consultas antes de continuar
+          
           const [tituloDoc, profeDoc] = await Promise.all([getDoc(tituloDocRef), getDoc(profeDocRef)]);
           
           const nombreTitulo = tituloDoc.exists() ? tituloDoc.data().nombre : 'Sin título';
@@ -64,16 +64,17 @@ export default {
             profe: nombreProfe,
             day: data.fecha,
           };
+          
         });
         
-        //espera a que todas las promesas se resuelvan antes de asignar a this.events
+        
         this.events = await Promise.all(eventsPromises);
       },
       getEventsByDay(day) {
         return this.events
           .filter((event) => event.day == day)
           .sort((a, b) => {
-          // Eliminamos la parte 'hs' y convertimos la hora a un número
+          
           const hourA = parseInt(a.start.replace('hs', '').trim(), 10);
           const hourB = parseInt(b.start.replace('hs', '').trim(), 10);
 
@@ -121,7 +122,7 @@ export default {
     transition: background-color 0.3s;
 }
 .agenda-text:hover {
-  background-color: rgba(87, 97, 178, 0.8); /* Ajusta el canal alfa según tus preferencias */
+  background-color: rgba(87, 97, 178, 0.8);
 }
 .row {
     display: flex;
