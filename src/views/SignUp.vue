@@ -1,67 +1,128 @@
 <template>
-	<div class="fondo">
-		<img class="foto" src="../assets/simbolo_om_violeta.png" alt="">
-		<div class="wrapper">
-			<h1>Registrate</h1>
-			<div class="input-box">
-				<input type="email" placeholder="Email" v-model="email">
-			</div>
-			<div class="input-box">
-				<input type="password" placeholder="Password" v-model="password">
-			</div>
-			<button class="btn" @click="signup">Registrate</button>
-			<p>¿Ya tenés una cuenta? <router-link class="router" to="/login">Ingresá acá!</router-link></p>
-		</div>
-	</div>
+  <div class="fondo">
+    <img
+      class="foto"
+      src="../assets/simbolo_om_violeta.png"
+      alt=""
+    />
+
+    <div class="wrapper">
+      <h1>Registrate</h1>
+
+      <div class="input-box">
+        <input
+          type="text"
+          placeholder="Nombre y apellido"
+          v-model="nombre_apellido"
+        />
+      </div>
+
+      <div class="input-box">
+        <input
+          type="email"
+          placeholder="Email"
+          v-model="email"
+        />
+      </div>
+
+      <div class="input-box">
+        <input
+          type="password"
+          placeholder="Password"
+          v-model="password"
+        />
+      </div>
+
+      <button class="btn" @click="signup">
+        Registrate
+      </button>
+
+      <p>
+        ¿Ya tenés una cuenta?
+        <router-link class="router" to="/login">
+          Ingresá acá
+        </router-link>
+      </p>
+    </div>
+  </div>
 </template>
 
 
-<!-- SignUp.vue -->
+
 <script>
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'
+import { getFirestore, doc, setDoc } from 'firebase/firestore'
 
 export default {
   name: 'SignUp',
+
   data() {
     return {
+      nombre_apellido: '',
       email: '',
       password: '',
-    };
+    }
   },
+
   methods: {
-    signup() {
-      const auth = getAuth();
-      createUserWithEmailAndPassword(auth, this.email, this.password)
-        .then(
-          (userCredential) => {
-            const uid = userCredential.user.uid;
-            this.$store.commit('setUser', uid);
-            this.$store.commit('setAuth', true);
-            localStorage.setItem('isAuthenticated', true);
-            this.$router.push('/calendario');
-          },
-          (err) => {
-            this.handleFirebaseError(err);
-          }
-        );
+    async signup() {
+      if (!this.nombre_apellido) {
+        alert('Por favor completá nombre y apellido')
+        return
+      }
+
+      try {
+        const auth = getAuth()
+        const db = getFirestore()
+
+        // 1️⃣ Crear usuario en Auth
+        const userCredential = await createUserWithEmailAndPassword(
+          auth,
+          this.email,
+          this.password
+        )
+
+        const user = userCredential.user
+
+        // 2️⃣ Crear documento en Firestore
+        await setDoc(doc(db, 'usuarios', user.uid), {
+          email: user.email,
+          nombre_apellido: this.nombre_apellido,
+          creadoEn: new Date(),
+          suscripciones: [],
+          habilitado: false,
+          rol: 'usuario',
+        })
+
+        this.$store.commit('setUser', user.uid)
+        this.$store.commit('setAuth', true)
+        localStorage.setItem('isAuthenticated', true)
+
+        this.$router.push('/')
+
+      } catch (error) {
+        this.handleFirebaseError(error)
+      }
     },
+
     handleFirebaseError(error) {
       const errorMessages = {
-        'auth/email-already-in-use': 'El correo electrónico ya está en uso. Por favor, inicia sesión o utiliza otro correo electrónico.',
-        'auth/weak-password': 'La contraseña es débil. Debe tener al menos 6 caracteres.',
-        'auth/invalid-email': 'El formato del correo electrónico no es válido.',
-        // agregar más mensajes de error si es necesario
-      };
+        'auth/email-already-in-use':
+          'El correo electrónico ya está en uso.',
+        'auth/weak-password':
+          'La contraseña debe tener al menos 6 caracteres.',
+        'auth/invalid-email':
+          'El correo electrónico no es válido.',
+      }
 
-      const errorMessage = errorMessages[error.code] || 'Error de autenticación. Inténtalo nuevamente.';
-
-      alert(errorMessage);
+      alert(
+        errorMessages[error.code] ||
+        'Error al registrarse. Intentalo nuevamente.'
+      )
     },
   },
-};
+}
 </script>
-
-
 
 <style>
 .fondo{
