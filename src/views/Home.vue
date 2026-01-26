@@ -41,7 +41,7 @@ export default {
         <h1>LAMULTIFORME</h1>
         <h2>Bienestar y salud para vos</h2>
         <div class="boton-contacto">
-            <button><a class="boton-contacto-text" href="https://wa.me/5491126825124">Agendá tu primera clase!</a></button>
+            <button><a class="boton-contacto-text" href="https://wa.me/5491126825124"><i class="fa-brands fa-whatsapp"></i>Agendá tu primera clase!</a></button>
             </div>
       </div>
     </div>
@@ -152,6 +152,9 @@ export default {
     top: 60%;
     left: 20%;
     transition: background-color 0.3s;
+}
+.boton-contacto-text i{
+  margin-right: 10px;
 }
 @media(max-width: 630px){
     .titulo h1{
