@@ -77,7 +77,7 @@ export default {
 
 .sidebar {
   width: 260px;
-  border-right: 1px solid #ddd;
+  border-right: 1px solid #5761b2;
 }
 
 .sidebar h3 {
@@ -117,4 +117,53 @@ export default {
 .content {
   flex: 1;
 }
+@media (max-width: 800px) {
+  .mi-cuenta-container {
+    flex-direction: column;
+    gap: 20px;
+    margin: 80px auto 30px;
+    padding: 0 16px;
+  }
+
+  .sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #5761b2;
+    padding-bottom: 10px;
+    
+  }
+
+  .sidebar h3 {
+    font-size: 1.2rem;
+    text-align: center;
+    margin-bottom: 12px;
+  }
+
+  .sidebar ul {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+  }
+
+  .sidebar li {
+    white-space: nowrap;
+    font-size: 0.9rem;
+    padding: 10px 14px;
+    margin-bottom: 0;
+    flex-shrink: 0;
+    border-radius: 20px;
+  }
+
+  .sidebar li.logout {
+    margin-top: 0;
+    margin-left: auto;
+    color: #c0392b;
+  }
+
+  .content {
+    width: 100%;
+  }
+}
+
 </style>
